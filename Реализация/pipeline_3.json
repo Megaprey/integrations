@@ -1,0 +1,85 @@
+{
+  "pipelineId": "1c1c004d-9a2e-446d-aecc-c6c9dacc2578",
+  "name": "Adp.KYC.HTTP.out",
+  "createdAt": 1793588907679,
+  "modifiedAt": 1793588907679,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "2f8be8bc-6f48-4ba4-bb5d-de14da3c5690",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 278.00000000000006,
+      "y": 79.33333333333334,
+      "config": {
+        "scriptFile": "go_script_2f8be8bc.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "4b405a14-5b9c-49c0-9264-f58a27fb0c51",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 251.33333333333337,
+      "y": 459.6666666666666,
+      "config": {
+        "scriptFile": "go_script_4b405a14.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "type": "SUPER_FLOW",
+      "title": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json",
+      "x": 277.0,
+      "y": 208.3333333333334,
+      "config": {
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8081/api"
+      },
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json",
+      "exposedConfig": {
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8081/api",
+        "556002d6-5e4b-4441-b658-92b275156847.swaggerPath": "",
+        "ed995bfc-da05-41ba-a848-1d5df5075a45.targetQueue": "qyqy123",
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.method": "POST",
+        "556002d6-5e4b-4441-b658-92b275156847.messageType": "NONE",
+        "5d98358a-0e88-4b96-b0d4-be509a334064.queueName": "SDGHGJGSDFS"
+      },
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "adb8b9f7-0ab6-45a7-95c4-7f210caf71f1",
+      "source": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "target": "2f8be8bc-6f48-4ba4-bb5d-de14da3c5690",
+      "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "e43074e4-9a5f-481d-ad68-7f98d7f67638",
+      "source": "2f8be8bc-6f48-4ba4-bb5d-de14da3c5690",
+      "target": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "03f1b0b3-d828-4978-b691-aee14b3a423f:IN"
+    },
+    {
+      "id": "b75c4a45-8596-4426-a9cd-15a243586447",
+      "source": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "target": "4b405a14-5b9c-49c0-9264-f58a27fb0c51",
+      "sourceTerminal": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "bf1db878-0d20-433c-b9e0-bb8a5d362cfd",
+      "source": "4b405a14-5b9c-49c0-9264-f58a27fb0c51",
+      "target": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "ed995bfc-da05-41ba-a848-1d5df5075a45:IN"
+    }
+  ],
+  "exposedConfig": {}
+}

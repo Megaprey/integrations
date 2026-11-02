@@ -1,0 +1,242 @@
+{
+  "pipelineId": "149e70b1-62a1-47bc-bd67-c5811b6d8a57",
+  "name": "httpOut",
+  "createdAt": 1793619241933,
+  "modifiedAt": 1793619241933,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
+      "type": "HTTP_REQUEST",
+      "title": "HTTP Request",
+      "x": 787.6666666666667,
+      "y": 133.33333333333337,
+      "config": {
+        "retryDelay": 1000,
+        "includeMetadata": false,
+        "method": "POST",
+        "retryCount": 3,
+        "contentType": "application/json",
+        "url": "http://localhost:8081/api",
+        "timeout": 30000
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "5d98358a-0e88-4b96-b0d4-be509a334064",
+      "type": "MQ_INPUT",
+      "title": "📥 SDGHGJGSDFS",
+      "x": 33.66666666666663,
+      "y": 141.6666666666667,
+      "config": {
+        "browseMode": false,
+        "messageFormat": "MQSTR",
+        "retryCount": 3,
+        "maxMessages": 100,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "commitInterval": 10,
+        "encoding": "UTF-8",
+        "waitInterval": 5000,
+        "failIfQuiescing": true,
+        "ccsid": 1208,
+        "transactionType": "local",
+        "queueName": "SDGHGJGSDFS",
+        "queueManager": "QMGR1",
+        "rollbackOnError": true,
+        "transportType": "MQCNO_CLIENT",
+        "retryInterval": 10000,
+        "connectionName": "localhost(1414)"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "ed995bfc-da05-41ba-a848-1d5df5075a45",
+      "type": "MQ_OUTPUT",
+      "title": "📨 qyqy12334243213211314432433543214е32е33",
+      "x": 333.0000000000002,
+      "y": 276.0,
+      "config": {
+        "messageFormat": "MQSTR",
+        "replyToQueueManager": "",
+        "retryCount": 3,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "messageId": "",
+        "replyToQueue": "",
+        "queueNameField": "",
+        "priority": 4,
+        "discardOnError": false,
+        "transactionType": "local",
+        "queueManager": "QMGR1",
+        "transportType": "MQCNO_CLIENT",
+        "expiration": 0,
+        "correlationId": "",
+        "retryInterval": 10000,
+        "targetQueue": "qyqy12334243213211314432433543214е32е33",
+        "connectionName": "localhost(1414)",
+        "persistent": true
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "03f1b0b3-d828-4978-b691-aee14b3a423f",
+      "type": "ELASTICSEARCH",
+      "title": "Elasticsearch",
+      "x": 332.99999999999994,
+      "y": 139.0,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
+      "type": "ELASTICSEARCH",
+      "title": "Elasticsearch",
+      "x": 1012.6666666666667,
+      "y": 134.0,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "06a899d0-9288-4e91-baf7-91d9bd96d35c",
+      "type": "SUPERFLOW_IN",
+      "title": "IN",
+      "x": 112.66666666666674,
+      "y": 304.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "69492843-6c4c-4807-9719-3d7e39af89b5",
+      "type": "SUPERFLOW_OUT",
+      "title": "OUT",
+      "x": 1238.6666666666667,
+      "y": 151.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "f72bf4ee-fcb3-4809-b1e7-82bb01130496",
+      "type": "SUPERFLOW_IN",
+      "title": "IN",
+      "x": 269.6666666666667,
+      "y": 162.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "758cb171-437b-4a71-a766-5f73ab1d39bb",
+      "type": "SUPERFLOW_OUT",
+      "title": "OUT",
+      "x": 213.66666666666669,
+      "y": 160.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "556002d6-5e4b-4441-b658-92b275156847",
+      "type": "VALIDATE",
+      "title": "✅ Validate",
+      "x": 576.0,
+      "y": 140.0,
+      "config": {
+        "xmlSchemaPath": "",
+        "swaggerPath": "C:\\Users\\girev\\Desktop\\KonstruktorScenariev\\JavaFXGrpcClient\\src\\main\\resources\\swagger\\loan-application-api.yaml",
+        "messageType": "JSON",
+        "requiredFields": "branchCode:required,channel:required,client:required,client.birthDate:required,client.clientId:required,client.firstName:required,client.inn:required,client.lastName:required,client.passport:required,client.passport.issueDate:required,client.passport.issuer:required,client.passport.number:required,client.passport.series:required,client.type:required,consents:required,employeeId:required,product:required,product.amount:required,product.currency:required,product.termMonths:required,product.type:required"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "76894392-658f-4103-83e0-4006cf751e9f",
+      "source": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
+      "target": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
+      "sourceTerminal": "RESPONSE",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "b736e508-ffdc-4700-8c28-f68ce59de26b",
+      "source": "06a899d0-9288-4e91-baf7-91d9bd96d35c",
+      "target": "ed995bfc-da05-41ba-a848-1d5df5075a45",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "ad682128-25ee-4153-887e-06deed6508ab",
+      "source": "5d98358a-0e88-4b96-b0d4-be509a334064",
+      "target": "758cb171-437b-4a71-a766-5f73ab1d39bb",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "fe0366aa-1986-4077-b474-bc3f8a87596c",
+      "source": "f72bf4ee-fcb3-4809-b1e7-82bb01130496",
+      "target": "03f1b0b3-d828-4978-b691-aee14b3a423f",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "0da1eadc-5f7b-4189-b400-e7e59f0d29ec",
+      "source": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
+      "target": "69492843-6c4c-4807-9719-3d7e39af89b5",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "db8f9ae9-3cdc-4965-9bf1-fb66e591cf43",
+      "source": "03f1b0b3-d828-4978-b691-aee14b3a423f",
+      "target": "556002d6-5e4b-4441-b658-92b275156847",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "092bf3d4-69e2-4fd9-ab95-e822d5cacf5c",
+      "source": "556002d6-5e4b-4441-b658-92b275156847",
+      "target": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    }
+  ],
+  "exposedConfig": {
+    "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8080/api",
+    "ed995bfc-da05-41ba-a848-1d5df5075a45.targetQueue": "qyqy123",
+    "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.method": "POST",
+    "556002d6-5e4b-4441-b658-92b275156847.messageType": "NONE",
+    "556002d6-5e4b-4441-b658-92b275156847.swaggerPath": "",
+    "5d98358a-0e88-4b96-b0d4-be509a334064.queueName": "SDGHGJGSDFS"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "pipelineId": "bc9ff82d-d7cb-4e2b-b369-87ff939a6498",
+  "name": "Adp.Rules.HTTP.out",
+  "createdAt": 1793588907685,
+  "modifiedAt": 1793588907685,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "b1111111-1111-4111-8111-111111111111",
+      "type": "GO_SCRIPT",
+      "title": "Mapping Canonical → Rules",
+      "x": 180.0,
+      "y": 220.0,
+      "config": {
+        "scriptFile": "go_script_rules_in.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "b2222222-2222-4222-8222-222222222222",
+      "type": "SUPER_FLOW",
+      "title": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json",
+      "x": 420.0,
+      "y": 220.0,
+      "config": {
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8090/rules"
+      },
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json",
+      "exposedConfig": {
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8080/api",
+        "556002d6-5e4b-4441-b658-92b275156847.swaggerPath": "",
+        "ed995bfc-da05-41ba-a848-1d5df5075a45.targetQueue": "qyqy123",
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.method": "POST",
+        "556002d6-5e4b-4441-b658-92b275156847.messageType": "NONE",
+        "5d98358a-0e88-4b96-b0d4-be509a334064.queueName": "SDGHGJGSDFS"
+      },
+      "exposed": []
+    },
+    {
+      "id": "b3333333-3333-4333-8333-333333333333",
+      "type": "GO_SCRIPT",
+      "title": "Mapping Rules → Canonical",
+      "x": 680.0,
+      "y": 220.0,
+      "config": {
+        "scriptFile": "go_script_rules_out.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "4d3eda04-c1cc-4338-913a-4f82b9347421",
+      "source": "b1111111-1111-4111-8111-111111111111",
+      "target": "b2222222-2222-4222-8222-222222222222",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "f72bf4ee-fcb3-4809-b1e7-82bb01130496:IN"
+    },
+    {
+      "id": "b43a489e-7c73-4690-bf9b-a465bd1336a0",
+      "source": "b2222222-2222-4222-8222-222222222222",
+      "target": "b3333333-3333-4333-8333-333333333333",
+      "sourceTerminal": "69492843-6c4c-4807-9719-3d7e39af89b5:OUT",
+      "targetTerminal": "IN"
+    }
+  ],
+  "exposedConfig": {}
+}

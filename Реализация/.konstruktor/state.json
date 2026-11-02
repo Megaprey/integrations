@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "openTabs": [
+    {
+      "name": "Adp.CRM.MQ.in",
+      "type": "main",
+      "file": "pipeline.json"
+    },
+    {
+      "name": "srv.scoring.orchestrator",
+      "type": "additional",
+      "file": "pipeline_2.json"
+    },
+    {
+      "name": "Adp.KYC.HTTP.out",
+      "type": "additional",
+      "file": "pipeline_3.json"
+    },
+    {
+      "name": "Adp.BKI.SOAP.out",
+      "type": "additional",
+      "file": "pipeline_4.json"
+    },
+    {
+      "name": "Adp.AF.MQ.out",
+      "type": "additional",
+      "file": "pipeline_5.json"
+    },
+    {
+      "name": "Adp.BKI.SOAP.out",
+      "type": "additional",
+      "file": "pipeline_6.json"
+    },
+    {
+      "name": "Adp.Scoring.MQ.out",
+      "type": "additional",
+      "file": "pipeline_7.json"
+    },
+    {
+      "name": "Adp.Rules.HTTP.out",
+      "type": "additional",
+      "file": "pipeline_8.json"
+    },
+    {
+      "name": "Adp.Decision.MQ.out",
+      "type": "additional",
+      "file": "pipeline_9.json"
+    },
+    {
+      "name": "Adp.Pricing.HTTP.out",
+      "type": "additional",
+      "file": "pipeline_10.json"
+    },
+    {
+      "name": "Adp.CRM.MQ.out",
+      "type": "additional",
+      "file": "pipeline_11.json"
+    }
+  ],
+  "activeTabIndex": 9
+}

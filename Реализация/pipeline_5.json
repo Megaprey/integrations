@@ -1,0 +1,71 @@
+{
+  "pipelineId": "d235f0e6-daae-4b5f-b957-901c81653e4e",
+  "name": "Adp.AF.MQ.out",
+  "createdAt": 1793588907682,
+  "modifiedAt": 1793588907682,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
+      "type": "SUPER_FLOW",
+      "title": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json",
+      "x": 514.0000000000006,
+      "y": 192.00000000000003,
+      "config": {},
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json",
+      "exposedConfig": {
+        "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f.retryCount": 3
+      },
+      "exposed": []
+    },
+    {
+      "id": "d68a2846-ed94-4083-9d10-57cf2107e1dc",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 959.3333333333335,
+      "y": 442.6666666666666,
+      "config": {
+        "scriptFile": "go_script_d68a2846.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "b63d2de8-2c85-4e9c-9d19-92a68537c522",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 159.66666666666657,
+      "y": 402.00000000000006,
+      "config": {
+        "scriptFile": "go_script_b63d2de8.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "7141045d-b145-4bdf-b986-45cf64255671",
+      "source": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
+      "target": "d68a2846-ed94-4083-9d10-57cf2107e1dc",
+      "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "e912f568-a440-4db7-beab-260e422ca0ea",
+      "source": "d68a2846-ed94-4083-9d10-57cf2107e1dc",
+      "target": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "03f1b0b3-d828-4978-b691-aee14b3a423f:IN"
+    },
+    {
+      "id": "c6695126-a318-4fe1-b877-e58b0719ef27",
+      "source": "b63d2de8-2c85-4e9c-9d19-92a68537c522",
+      "target": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f:IN"
+    }
+  ],
+  "exposedConfig": {}
+}

@@ -1,0 +1,45 @@
+{
+  "pipelineId": "cf9dc275-4ada-433e-b562-a3c0c6ca7a29",
+  "name": "Основной",
+  "createdAt": 1793619230038,
+  "modifiedAt": 1793619230038,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "ef937a8b-1bc5-44e7-921c-eea3fde62811",
+      "type": "SUPER_FLOW",
+      "title": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json",
+      "x": 434.0,
+      "y": 192.0,
+      "config": {},
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json",
+      "exposedConfig": {
+        "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f.retryCount": 3
+      },
+      "exposed": []
+    },
+    {
+      "id": "6fd654d8-15fc-4078-8b7f-c2c7f12e588f",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 429.0,
+      "y": 55.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "0f95d31a-4af0-430a-872d-5510532bc51b",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 445.0,
+      "y": 318.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [],
+  "exposedConfig": {}
+}

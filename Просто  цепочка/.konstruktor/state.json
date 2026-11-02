@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "openTabs": [
+    {
+      "name": "mqIn",
+      "type": "additional",
+      "file": "032e3c97-8d5d-4345-ad32-141fb1bcf282.json"
+    },
+    {
+      "name": "mqOut",
+      "type": "additional",
+      "file": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json"
+    },
+    {
+      "name": "httpIn",
+      "type": "additional",
+      "file": "33453904-88b6-4790-b9df-f16b894e7b0f.json"
+    },
+    {
+      "name": "httpOut",
+      "type": "additional",
+      "file": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json"
+    },
+    {
+      "name": "soapIn",
+      "type": "additional",
+      "file": "df496830-2fa1-4c4e-80ab-c2c30127b4d1.json"
+    },
+    {
+      "name": "orchestrator",
+      "type": "additional",
+      "file": "03de3c15-c5e9-4344-b332-6f5bfcd0dc34.json"
+    },
+    {
+      "name": "soapOut",
+      "type": "additional",
+      "file": "f17ead8d-a45b-48de-8249-512b530f8ee7.json"
+    }
+  ],
+  "activeTabIndex": 1
+}

@@ -1,0 +1,250 @@
+{
+  "pipelineId": "6c13f606-1551-404d-be84-485af62864ee",
+  "name": "mqOut",
+  "createdAt": 1793619241931,
+  "modifiedAt": 1793619241931,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "5d98358a-0e88-4b96-b0d4-be509a334064",
+      "type": "MQ_INPUT",
+      "title": "📥 SDGHGJGSDFS",
+      "x": 49.0,
+      "y": 155.0,
+      "config": {
+        "browseMode": false,
+        "messageFormat": "MQSTR",
+        "retryCount": 3,
+        "maxMessages": 100,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "commitInterval": 10,
+        "encoding": "UTF-8",
+        "waitInterval": 5000,
+        "failIfQuiescing": true,
+        "ccsid": 1208,
+        "transactionType": "local",
+        "queueName": "adp.rq",
+        "queueManager": "QMGR1",
+        "rollbackOnError": true,
+        "transportType": "MQCNO_CLIENT",
+        "retryInterval": 10000,
+        "connectionName": "localhost(1414)"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "03f1b0b3-d828-4978-b691-aee14b3a423f",
+      "type": "ELASTICSEARCH",
+      "title": "Elasticsearch",
+      "x": 419.66666666666674,
+      "y": 150.33333333333331,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "6af19a51-0815-474d-85d5-8885291b1de5",
+      "type": "SUPERFLOW_IN",
+      "title": "IN",
+      "x": 347.6666666666667,
+      "y": 171.00000000000006,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "0f87aabf-bf0b-4abd-9472-bf9dcdb9c689",
+      "type": "SUPERFLOW_OUT",
+      "title": "OUT",
+      "x": 269.00000000000006,
+      "y": 174.33333333333337,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "4c8db485-d0d8-4d4a-abd3-eaef792b34f8",
+      "type": "VALIDATE",
+      "title": "✅ Validate",
+      "x": 732.0,
+      "y": 153.66666666666669,
+      "config": {
+        "xmlSchemaPath": "",
+        "swaggerPath": "",
+        "messageType": "NONE",
+        "requiredFields": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "e3dc4475-f5f4-4349-8407-4470ca0e40a7",
+      "type": "SUPERFLOW_IN",
+      "title": "IN",
+      "x": 438.0,
+      "y": 454.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "01600ab9-086d-4d0b-83f6-b78f52daeac2",
+      "type": "MQ_OUTPUT",
+      "title": "📨 external.system.q",
+      "x": 1002.3333333333333,
+      "y": 120.66666666666669,
+      "config": {
+        "messageFormat": "MQSTR",
+        "replyToQueueManager": "",
+        "retryCount": 3,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "messageId": "",
+        "replyToQueue": "",
+        "queueNameField": "",
+        "priority": 4,
+        "discardOnError": false,
+        "transactionType": "local",
+        "queueManager": "QMGR1",
+        "transportType": "MQCNO_CLIENT",
+        "expiration": 0,
+        "correlationId": "",
+        "retryInterval": 10000,
+        "targetQueue": "external.system.q",
+        "connectionName": "localhost(1414)",
+        "persistent": true
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f",
+      "type": "MQ_OUTPUT",
+      "title": "📨 srv.aggr.rs",
+      "x": 578.3333333333335,
+      "y": 438.0,
+      "config": {
+        "messageFormat": "MQSTR",
+        "replyToQueueManager": "",
+        "retryCount": 3,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "messageId": "",
+        "replyToQueue": "",
+        "queueNameField": "",
+        "priority": 4,
+        "discardOnError": false,
+        "transactionType": "local",
+        "queueManager": "QMGR1",
+        "transportType": "MQCNO_CLIENT",
+        "expiration": 0,
+        "correlationId": "",
+        "retryInterval": 10000,
+        "targetQueue": "srv.aggr.rs",
+        "connectionName": "localhost(1414)",
+        "persistent": true
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "5186c54c-69bd-41c7-93cc-80cc514e0e0a",
+      "type": "MQ_INPUT",
+      "title": "📥 123321123WQEWAS",
+      "x": 86.0,
+      "y": 418.0,
+      "config": {
+        "browseMode": false,
+        "messageFormat": "MQSTR",
+        "retryCount": 3,
+        "maxMessages": 100,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "commitInterval": 10,
+        "encoding": "UTF-8",
+        "waitInterval": 5000,
+        "failIfQuiescing": true,
+        "ccsid": 1208,
+        "transactionType": "local",
+        "queueName": "123321123WQEWAS",
+        "queueManager": "QMGR1",
+        "rollbackOnError": true,
+        "transportType": "MQCNO_CLIENT",
+        "retryInterval": 10000,
+        "connectionName": "localhost(1414)"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "9e13cd30-cfc7-4d08-a735-fe4f7570bdb7",
+      "type": "SUPERFLOW_OUT",
+      "title": "OUT",
+      "x": 274.0,
+      "y": 426.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "569b22d1-804d-4cfc-91eb-fb98ad757630",
+      "source": "5d98358a-0e88-4b96-b0d4-be509a334064",
+      "target": "0f87aabf-bf0b-4abd-9472-bf9dcdb9c689",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "325ddd28-b3f4-4c9b-926f-1294e862c269",
+      "source": "6af19a51-0815-474d-85d5-8885291b1de5",
+      "target": "03f1b0b3-d828-4978-b691-aee14b3a423f",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "3621207f-017a-4c4b-bb18-91cf8e415355",
+      "source": "03f1b0b3-d828-4978-b691-aee14b3a423f",
+      "target": "4c8db485-d0d8-4d4a-abd3-eaef792b34f8",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "7725c3f2-c0b1-4ff2-b58a-fb2d72152725",
+      "source": "4c8db485-d0d8-4d4a-abd3-eaef792b34f8",
+      "target": "01600ab9-086d-4d0b-83f6-b78f52daeac2",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "85cc7ecc-7b1d-41e6-92cc-ca6a8064f75d",
+      "source": "e3dc4475-f5f4-4349-8407-4470ca0e40a7",
+      "target": "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "4e58a56a-89df-42f1-a379-3f6f79d8de15",
+      "source": "5186c54c-69bd-41c7-93cc-80cc514e0e0a",
+      "target": "9e13cd30-cfc7-4d08-a735-fe4f7570bdb7",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    }
+  ],
+  "exposedConfig": {
+    "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f.retryCount": 3
+  }
+}

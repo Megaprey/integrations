@@ -1,0 +1,204 @@
+{
+  "pipelineId": "582e7641-28e5-4be3-ae9c-ec49de313888",
+  "name": "httpIn",
+  "createdAt": 1793619241932,
+  "modifiedAt": 1793619241932,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "8cc7591b-5c73-4449-8c69-da5358197ab2",
+      "type": "HTTP_INPUT",
+      "title": "HTTP Input",
+      "x": 34.66666666666663,
+      "y": 213.33333333333337,
+      "config": {
+        "responseBody": "{\"status\":\"ok\"}",
+        "method": "POST",
+        "validateContentType": true,
+        "corsEnabled": true,
+        "logRequests": true,
+        "path": "/",
+        "responseStatusCode": "200",
+        "allowedOrigins": [
+          "*"
+        ],
+        "requiredHeaders": [],
+        "port": 8080,
+        "timeoutMs": 30000,
+        "maxBodySize": 10485760,
+        "contentType": "application/json"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "cf51df1f-49f8-47b5-a784-9873bbda12f4",
+      "type": "MQ_INPUT",
+      "title": "📥 DSDGHDRYGFDS",
+      "x": 110.0,
+      "y": 362.0,
+      "config": {
+        "browseMode": false,
+        "messageFormat": "MQSTR",
+        "retryCount": 3,
+        "maxMessages": 100,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "commitInterval": 10,
+        "encoding": "UTF-8",
+        "waitInterval": 5000,
+        "failIfQuiescing": true,
+        "ccsid": 1208,
+        "transactionType": "local",
+        "queueName": "DSDGHDRYGFDS",
+        "queueManager": "QMGR1",
+        "rollbackOnError": true,
+        "transportType": "MQCNO_CLIENT",
+        "retryInterval": 10000,
+        "connectionName": "localhost(1414)"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "09ebeb22-e25e-4078-b82a-9c879b0feb57",
+      "type": "MQ_OUTPUT",
+      "title": "MQ Output",
+      "x": 1249.0,
+      "y": 195.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "c871a684-696e-4473-9aa7-14de5101b82f",
+      "type": "VERIFICATION",
+      "title": "Verification",
+      "x": 268.0,
+      "y": 205.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "e06a524c-ad34-47ec-b7c3-0b72867cfdf4",
+      "type": "ELASTICSEARCH",
+      "title": "Elasticsearch",
+      "x": 529.0,
+      "y": 198.0,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "335cff37-c9e5-4778-a8db-a37693f19d6d",
+      "type": "ELASTICSEARCH",
+      "title": "Elasticsearch",
+      "x": 1029.0,
+      "y": 198.0,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "b775fba2-8be7-403e-92b7-dae8ae85e0a2",
+      "type": "SUPERFLOW_IN",
+      "title": "IN",
+      "x": 919.0,
+      "y": 227.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "8b1a60fc-dc48-44da-938d-5b50bb62a294",
+      "type": "SUPERFLOW_OUT",
+      "title": "OUT",
+      "x": 734.0,
+      "y": 227.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "2624ac07-4f25-423e-9a82-b61a2d6aa89b",
+      "type": "SUPERFLOW_IN",
+      "title": "IN",
+      "x": 587.0,
+      "y": 382.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "80e17c9f-0596-4ab3-b257-958da3aab963",
+      "type": "SUPERFLOW_OUT",
+      "title": "OUT",
+      "x": 400.0,
+      "y": 369.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "b5807054-ca68-4143-aa86-41d87fc87bad",
+      "type": "ELASTICSEARCH",
+      "title": "🔍 ES: pipeline-data",
+      "x": 727.0,
+      "y": 361.0,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "dd89d242-9225-4af5-9838-5a9adc74f3f4",
+      "source": "8cc7591b-5c73-4449-8c69-da5358197ab2",
+      "target": "c871a684-696e-4473-9aa7-14de5101b82f",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "31276062-2a05-4830-ab72-e6578928ceb4",
+      "source": "cf51df1f-49f8-47b5-a784-9873bbda12f4",
+      "target": "80e17c9f-0596-4ab3-b257-958da3aab963",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    }
+  ],
+  "exposedConfig": {}
+}

@@ -1,0 +1,123 @@
+{
+  "pipelineId": "0c18c0a0-533f-4380-bdcb-c0582e50ddf5",
+  "name": "Adp.KYC.HTTP.out",
+  "createdAt": 1793619167121,
+  "modifiedAt": 1793619167121,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "2f8be8bc-6f48-4ba4-bb5d-de14da3c5690",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 276.00000000000006,
+      "y": 94.33333333333334,
+      "config": {
+        "scriptFile": "go_script_2f8be8bc.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "4b405a14-5b9c-49c0-9264-f58a27fb0c51",
+      "type": "GO_SCRIPT",
+      "title": "🐹 Go: main.Process",
+      "x": 274.33333333333337,
+      "y": 335.6666666666666,
+      "config": {
+        "maxScriptSize": 1048576,
+        "goVersion": "1.21",
+        "gcflags": "",
+        "useSandbox": true,
+        "scriptEncoding": "UTF-8",
+        "timeout": 5000,
+        "allowCgo": false,
+        "logLevel": "NORMAL",
+        "function": "Process",
+        "buildTags": "",
+        "raceDetection": false,
+        "ldflags": "",
+        "workDir": "/tmp",
+        "goOs": "linux",
+        "pluginMode": false,
+        "goArch": "amd64",
+        "preserveBody": false,
+        "variables": "{12312312312312}",
+        "asmflags": "",
+        "imports": "[]",
+        "cacheTTL": 60000,
+        "cpuLimit": 10000,
+        "module": "main",
+        "libraries": "[]",
+        "preserveHeaders": true,
+        "exportSymbols": "[]",
+        "scriptFile": "go_script_4b405a14.go",
+        "errorRoute": "",
+        "failOnError": false,
+        "script": "",
+        "benchmark": false,
+        "coverProfile": "",
+        "cacheEnabled": true,
+        "environment": "{}",
+        "allowUnsafe": false,
+        "maxCompileTime": 10000,
+        "memoryLimit": 100,
+        "debugMode": false,
+        "returnType": "JSON"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "type": "SUPER_FLOW",
+      "title": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json",
+      "x": 277.0,
+      "y": 209.3333333333334,
+      "config": {
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8081/api"
+      },
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json",
+      "exposedConfig": {
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8081/api",
+        "556002d6-5e4b-4441-b658-92b275156847.swaggerPath": "",
+        "ed995bfc-da05-41ba-a848-1d5df5075a45.targetQueue": "qyqy123",
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.method": "POST",
+        "556002d6-5e4b-4441-b658-92b275156847.messageType": "NONE",
+        "5d98358a-0e88-4b96-b0d4-be509a334064.queueName": "SDGHGJGSDFS"
+      },
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "1015fd46-9976-421e-b115-db8a8bd1d76f",
+      "source": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "target": "2f8be8bc-6f48-4ba4-bb5d-de14da3c5690",
+      "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "c26db28c-5447-44a5-8e2a-bcc7314058a2",
+      "source": "2f8be8bc-6f48-4ba4-bb5d-de14da3c5690",
+      "target": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "03f1b0b3-d828-4978-b691-aee14b3a423f:IN"
+    },
+    {
+      "id": "61242789-f372-4018-b6b0-e499f2a11797",
+      "source": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "target": "4b405a14-5b9c-49c0-9264-f58a27fb0c51",
+      "sourceTerminal": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "2db14519-716e-454d-bdcc-3b00f18fa660",
+      "source": "4b405a14-5b9c-49c0-9264-f58a27fb0c51",
+      "target": "16e03fca-d90a-494c-afb0-c9f3224af4ca",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "ed995bfc-da05-41ba-a848-1d5df5075a45:IN"
+    }
+  ],
+  "exposedConfig": {}
+}

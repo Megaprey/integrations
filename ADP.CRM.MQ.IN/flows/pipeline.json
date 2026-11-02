@@ -1,0 +1,76 @@
+{
+  "pipelineId": "f67d8f28-41ba-4eb8-ae9f-cda8a381216b",
+  "name": "Adp.CRM.MQ.in",
+  "createdAt": 1793532528929,
+  "modifiedAt": 1793532528929,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "ce39f6a8-d4c1-4e93-9f07-093bd9fbcbb1",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 439.0,
+      "y": 355.66666666666674,
+      "config": {
+        "scriptFile": "go_script_ce39f6a8.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
+      "type": "SUPER_FLOW",
+      "title": "032e3c97-8d5d-4345-ad32-141fb1bcf282.json",
+      "x": 434.3333333333335,
+      "y": 212.0000000000001,
+      "config": {},
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "032e3c97-8d5d-4345-ad32-141fb1bcf282.json",
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "f9208db8-d7fd-43e8-8c2c-48f7334167f0",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 430.0,
+      "y": 77.00000000000006,
+      "config": {
+        "scriptFile": "go_script_f9208db8.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "f37a146e-80b6-4144-9c22-076885bd55e1",
+      "source": "f9208db8-d7fd-43e8-8c2c-48f7334167f0",
+      "target": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "335cff37-c9e5-4778-a8db-a37693f19d6d:IN"
+    },
+    {
+      "id": "262b13db-1420-412c-9a9b-9516086745f6",
+      "source": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
+      "target": "f9208db8-d7fd-43e8-8c2c-48f7334167f0",
+      "sourceTerminal": "e06a524c-ad34-47ec-b7c3-0b72867cfdf4:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "c23725c0-3743-4a49-9028-03f2bd9f84eb",
+      "source": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
+      "target": "ce39f6a8-d4c1-4e93-9f07-093bd9fbcbb1",
+      "sourceTerminal": "cf51df1f-49f8-47b5-a784-9873bbda12f4:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "5af2e30a-79c2-4d87-826f-795a7d9d8fc7",
+      "source": "ce39f6a8-d4c1-4e93-9f07-093bd9fbcbb1",
+      "target": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "b5807054-ca68-4143-aa86-41d87fc87bad:IN"
+    }
+  ],
+  "exposedConfig": {}
+}

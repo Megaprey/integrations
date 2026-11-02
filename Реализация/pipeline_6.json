@@ -1,0 +1,62 @@
+{
+  "pipelineId": "ba986927-75ff-480f-96f0-22f055e6965d",
+  "name": "Adp.BKI.SOAP.out",
+  "createdAt": 1793588907683,
+  "modifiedAt": 1793588907683,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "93d9fa01-8d00-4df7-b3b7-8a8801b8ef3a",
+      "type": "GO_SCRIPT",
+      "title": "Mapping Canonical → BKI",
+      "x": 256.0,
+      "y": 324.6666666666665,
+      "config": {
+        "scriptFile": "go_script_bki_in.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "83fa1ff8-849f-4342-8801-8893a2db8b11",
+      "type": "SUPER_FLOW",
+      "title": "f17ead8d-a45b-48de-8249-512b530f8ee7.json",
+      "x": 607.3333333333337,
+      "y": 364.0,
+      "config": {},
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "f17ead8d-a45b-48de-8249-512b530f8ee7.json",
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "f6a71a03-5351-4e97-8bd3-4b5b20106b35",
+      "type": "GO_SCRIPT",
+      "title": "Mapping BKI → Canonical",
+      "x": 1014.0,
+      "y": 337.3333333333333,
+      "config": {
+        "scriptFile": "go_script_bki_out.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "ba3daaf9-cf7a-4761-9453-6a8d539555c0",
+      "source": "93d9fa01-8d00-4df7-b3b7-8a8801b8ef3a",
+      "target": "83fa1ff8-849f-4342-8801-8893a2db8b11",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "63d6db50-f826-4420-950c-f6990d62569c:IN"
+    },
+    {
+      "id": "769c8c9a-2608-4484-8022-e882d6b64193",
+      "source": "83fa1ff8-849f-4342-8801-8893a2db8b11",
+      "target": "f6a71a03-5351-4e97-8bd3-4b5b20106b35",
+      "sourceTerminal": "a1ed89b9-ad06-475d-985f-1f218e134d70:OUT",
+      "targetTerminal": "IN"
+    }
+  ],
+  "exposedConfig": {}
+}

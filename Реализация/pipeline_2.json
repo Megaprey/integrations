@@ -1,0 +1,78 @@
+{
+  "pipelineId": "999a17c8-6d05-4aa3-83fb-c06d2e05f198",
+  "name": "srv.scoring.orchestrator",
+  "createdAt": 1793588907677,
+  "modifiedAt": 1793588907677,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "e068184d-b67a-426d-8a70-7debda31ad74",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 457.66666666666674,
+      "y": 120.00000000000006,
+      "config": {
+        "scriptFile": "go_script_e068184d.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "83787f97-0b2d-46cf-960a-e615ecd7ff78",
+      "type": "SUPER_FLOW",
+      "title": "03de3c15-c5e9-4344-b332-6f5bfcd0dc34.json",
+      "x": 460.66666666666663,
+      "y": 246.66666666666663,
+      "config": {
+        "d9842990-33ad-422c-9fe9-3cf5a14cad22.queueName": "srv.scoring.orchestrator.q"
+      },
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "03de3c15-c5e9-4344-b332-6f5bfcd0dc34.json",
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "d9f19c10-b66a-4b7a-8460-5689ec94e7dc",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 450.3333333333335,
+      "y": 383.3333333333333,
+      "config": {
+        "scriptFile": "go_script_d9f19c10.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "f2e7be5f-22cb-40f3-95e9-a3dca53d038a",
+      "source": "83787f97-0b2d-46cf-960a-e615ecd7ff78",
+      "target": "e068184d-b67a-426d-8a70-7debda31ad74",
+      "sourceTerminal": "dc264f58-2994-4c28-899e-037331b330bb:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "f13424c6-39ae-48e0-8706-0f038f4f2e95",
+      "source": "e068184d-b67a-426d-8a70-7debda31ad74",
+      "target": "83787f97-0b2d-46cf-960a-e615ecd7ff78",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "d74da679-059e-47c1-93fb-67edd6d6f048:IN"
+    },
+    {
+      "id": "5a4a02c0-566a-44c4-b974-0f1421d11700",
+      "source": "83787f97-0b2d-46cf-960a-e615ecd7ff78",
+      "target": "d9f19c10-b66a-4b7a-8460-5689ec94e7dc",
+      "sourceTerminal": "b7714784-0378-4714-a494-7bba1cd334fd:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "908ea008-960b-4b71-8a29-c694b4990144",
+      "source": "d9f19c10-b66a-4b7a-8460-5689ec94e7dc",
+      "target": "83787f97-0b2d-46cf-960a-e615ecd7ff78",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "be447ea4-7c90-42a0-afc0-9870c8135da5:IN"
+    }
+  ],
+  "exposedConfig": {}
+}

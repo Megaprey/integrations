@@ -1,0 +1,10 @@
+{
+  "pipelineId": "286e932b-7932-4c98-9d8d-ee817a51930a",
+  "name": "Основной",
+  "createdAt": 1793590443665,
+  "modifiedAt": 1793590443665,
+  "isPattern": false,
+  "blocks": [],
+  "connections": [],
+  "exposedConfig": {}
+}

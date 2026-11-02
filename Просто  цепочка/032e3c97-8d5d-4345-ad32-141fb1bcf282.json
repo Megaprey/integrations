@@ -1,0 +1,282 @@
+{
+  "pipelineId": "0474f37e-62bd-468f-b9ed-80f0a6714e2f",
+  "name": "mqIn",
+  "createdAt": 1793619241929,
+  "modifiedAt": 1793619241929,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "8cc7591b-5c73-4449-8c69-da5358197ab2",
+      "type": "MQ_INPUT",
+      "title": "📥 crm.in.q",
+      "x": 35.0,
+      "y": 212.0,
+      "config": {
+        "browseMode": false,
+        "messageFormat": "MQSTR",
+        "retryCount": 3,
+        "maxMessages": 100,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "commitInterval": 10,
+        "encoding": "UTF-8",
+        "waitInterval": 5000,
+        "failIfQuiescing": true,
+        "ccsid": 1208,
+        "transactionType": "local",
+        "queueName": "crm.in.q",
+        "queueManager": "QMGR1",
+        "rollbackOnError": true,
+        "transportType": "MQCNO_CLIENT",
+        "retryInterval": 10000,
+        "connectionName": "localhost(1414)"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "cf51df1f-49f8-47b5-a784-9873bbda12f4",
+      "type": "MQ_INPUT",
+      "title": "📥 111222",
+      "x": 55.0,
+      "y": 374.66666666666663,
+      "config": {
+        "browseMode": false,
+        "messageFormat": "MQSTR",
+        "retryCount": 3,
+        "maxMessages": 100,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "commitInterval": 10,
+        "encoding": "UTF-8",
+        "waitInterval": 5000,
+        "failIfQuiescing": true,
+        "ccsid": 1208,
+        "transactionType": "local",
+        "queueName": "111222",
+        "queueManager": "QMGR1",
+        "rollbackOnError": true,
+        "transportType": "MQCNO_CLIENT",
+        "retryInterval": 10000,
+        "connectionName": "localhost(1414)"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "e06a524c-ad34-47ec-b7c3-0b72867cfdf4",
+      "type": "ELASTICSEARCH",
+      "title": "Elasticsearch15",
+      "x": 243.66666666666652,
+      "y": 209.66666666666669,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "335cff37-c9e5-4778-a8db-a37693f19d6d",
+      "type": "ELASTICSEARCH",
+      "title": "Elasticsearch",
+      "x": 680.0,
+      "y": 197.33333333333331,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "b775fba2-8be7-403e-92b7-dae8ae85e0a2",
+      "type": "SUPERFLOW_IN",
+      "title": "IN",
+      "x": 578.0,
+      "y": 225.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "2624ac07-4f25-423e-9a82-b61a2d6aa89b",
+      "type": "SUPERFLOW_IN",
+      "title": "IN",
+      "x": 422.0,
+      "y": 383.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "80e17c9f-0596-4ab3-b257-958da3aab963",
+      "type": "SUPERFLOW_OUT",
+      "title": "132423145235235323523543",
+      "x": 312.0,
+      "y": 385.0,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "b5807054-ca68-4143-aa86-41d87fc87bad",
+      "type": "ELASTICSEARCH",
+      "title": "🔍 ES: pipeline-data",
+      "x": 506.66666666666674,
+      "y": 355.6666666666667,
+      "config": {
+        "includeMetadata": true,
+        "password": "",
+        "indexName": "pipeline-data",
+        "host": "http://localhost:9200",
+        "documentIdField": "",
+        "includeHeaders": true,
+        "includePayload": true,
+        "operation": "INDEX",
+        "timeout": 30000,
+        "username": ""
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "cc714491-c107-44d7-b485-ebd9cfeb4201",
+      "type": "SUPERFLOW_OUT",
+      "title": "15",
+      "x": 438.66666666666674,
+      "y": 229.33333333333331,
+      "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "4bd29eee-d064-49d5-9fa5-0a7f142e15cc",
+      "type": "MQ_OUTPUT",
+      "title": "📨 yyy",
+      "x": 761.0,
+      "y": 362.0,
+      "config": {
+        "messageFormat": "MQSTR",
+        "replyToQueueManager": "",
+        "retryCount": 3,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "messageId": "",
+        "replyToQueue": "",
+        "queueNameField": "",
+        "priority": 4,
+        "discardOnError": false,
+        "transactionType": "local",
+        "queueManager": "QMGR1",
+        "transportType": "MQCNO_CLIENT",
+        "expiration": 0,
+        "correlationId": "",
+        "retryInterval": 10000,
+        "targetQueue": "yyy",
+        "connectionName": "localhost(1414)",
+        "persistent": true
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "2f7d4a4c-2491-4ae1-a33d-8d17bd329ae4",
+      "type": "MQ_OUTPUT",
+      "title": "📨 ppp",
+      "x": 906.6666666666667,
+      "y": 207.33333333333331,
+      "config": {
+        "messageFormat": "MQSTR",
+        "replyToQueueManager": "",
+        "retryCount": 3,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "messageId": "",
+        "replyToQueue": "",
+        "queueNameField": "",
+        "priority": 4,
+        "discardOnError": false,
+        "transactionType": "local",
+        "queueManager": "QMGR1",
+        "transportType": "MQCNO_CLIENT",
+        "expiration": 0,
+        "correlationId": "",
+        "retryInterval": 10000,
+        "targetQueue": "ppp",
+        "connectionName": "localhost(1414)",
+        "persistent": true
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "7f82b755-f2ba-45d6-9b3d-5ef3493512d6",
+      "source": "cf51df1f-49f8-47b5-a784-9873bbda12f4",
+      "target": "80e17c9f-0596-4ab3-b257-958da3aab963",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "c77fdd61-d6b8-42e9-aa26-d9fc2f92b6f0",
+      "source": "2624ac07-4f25-423e-9a82-b61a2d6aa89b",
+      "target": "b5807054-ca68-4143-aa86-41d87fc87bad",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "ba0e4ac8-0bdf-4faf-b9dd-7b019ec1cb39",
+      "source": "b775fba2-8be7-403e-92b7-dae8ae85e0a2",
+      "target": "335cff37-c9e5-4778-a8db-a37693f19d6d",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "bfa00ad1-b351-4a8b-8391-21b7c621d22f",
+      "source": "e06a524c-ad34-47ec-b7c3-0b72867cfdf4",
+      "target": "cc714491-c107-44d7-b485-ebd9cfeb4201",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "cf646120-ecb9-44ff-a2e0-e5adbc653607",
+      "source": "8cc7591b-5c73-4449-8c69-da5358197ab2",
+      "target": "e06a524c-ad34-47ec-b7c3-0b72867cfdf4",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "201bc46d-6bcd-4813-89f3-3c305db057c6",
+      "source": "b5807054-ca68-4143-aa86-41d87fc87bad",
+      "target": "4bd29eee-d064-49d5-9fa5-0a7f142e15cc",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "1e9677f9-38cd-4c63-8fac-e9ce364540cb",
+      "source": "335cff37-c9e5-4778-a8db-a37693f19d6d",
+      "target": "2f7d4a4c-2491-4ae1-a33d-8d17bd329ae4",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    }
+  ],
+  "exposedConfig": {}
+}

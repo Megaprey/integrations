@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "openTabs": [
+    {
+      "name": "Основной",
+      "type": "main",
+      "file": "pipeline.json"
+    }
+  ],
+  "activeTabIndex": 0
+}

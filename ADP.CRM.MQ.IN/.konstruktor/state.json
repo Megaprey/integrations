@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "openTabs": [
+    {
+      "name": "Adp.CRM.MQ.in",
+      "type": "main",
+      "file": "pipeline.json"
+    }
+  ],
+  "activeTabIndex": 0
+}
