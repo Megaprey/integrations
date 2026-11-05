@@ -1,0 +1,53 @@
+{
+  "pipelineId": "92e67371-5629-4dd6-9cc3-912a5c2a1206",
+  "name": "Новый пайплайн",
+  "createdAt": 1790244381470,
+  "modifiedAt": 1790244381470,
+  "isPattern": false,
+  "blocks": [
+    {
+      "id": "644a5435-c583-4643-b511-de134351ea07",
+      "type": "SUPER_FLOW",
+      "title": "pipeline.json",
+      "x": 350.0,
+      "y": 282.0,
+      "config": {},
+      "referenceProjectName": "dsadsa",
+      "referenceFileName": "pipeline.json"
+    },
+    {
+      "id": "1389fd6f-32e0-4d29-a719-a22163d2c3f6",
+      "type": "MQ_INPUT",
+      "title": "📥 12345",
+      "x": 99.0,
+      "y": 288.0,
+      "config": {
+        "browseMode": false,
+        "messageFormat": "MQSTR",
+        "retryCount": 3,
+        "maxMessages": 100,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "commitInterval": 10,
+        "encoding": "UTF-8",
+        "waitInterval": 5000,
+        "failIfQuiescing": true,
+        "ccsid": 1208,
+        "transactionType": "local",
+        "queueName": "12345",
+        "queueManager": "QMGR1",
+        "rollbackOnError": true,
+        "transportType": "MQCNO_CLIENT",
+        "retryInterval": 10000,
+        "connectionName": "localhost(1414)"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "bf2386e0-24c8-46dc-b166-2ff370abc2e7",
+      "source": "1389fd6f-32e0-4d29-a719-a22163d2c3f6",
+      "target": "644a5435-c583-4643-b511-de134351ea07"
+    }
+  ]
+}

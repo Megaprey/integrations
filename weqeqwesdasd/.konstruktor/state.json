@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "openTabs": [
+    {
+      "name": "Новый пайплайн",
+      "type": "main",
+      "file": "pipeline.json"
+    }
+  ],
+  "activeTabIndex": 1
+}

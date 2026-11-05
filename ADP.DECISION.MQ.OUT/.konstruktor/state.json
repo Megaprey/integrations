@@ -2,7 +2,7 @@
   "version": "1.0",
   "openTabs": [
     {
-      "name": "Основной",
+      "name": "Adp.Decision.MQ.out",
       "type": "main",
       "file": "pipeline.json"
     }

@@ -1,10 +1,81 @@
 {
-  "pipelineId": "f00970b8-d0b2-40a9-8a49-edbc74509e19",
-  "name": "Основной",
-  "createdAt": 1793590456698,
-  "modifiedAt": 1793590456698,
+  "pipelineId": "a9a196fe-56be-4b35-83ce-5ebafd0812bc",
+  "name": "Adp.Decision.MQ.out",
+  "createdAt": 1793848186983,
+  "modifiedAt": 1793848186983,
   "isPattern": false,
-  "blocks": [],
-  "connections": [],
+  "blocks": [
+    {
+      "id": "c1111111-1111-4111-8111-111111111111",
+      "type": "GO_SCRIPT",
+      "title": "Mapping Canonical → Decision",
+      "x": 419.0,
+      "y": 94.0,
+      "config": {
+        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.DECISION.MQ.OUT\\scripts\\go_script_c1111111.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "c2222222-2222-4222-8222-222222222222",
+      "type": "SUPER_FLOW",
+      "title": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json",
+      "x": 420.0,
+      "y": 219.0,
+      "config": {
+        "01600ab9-086d-4d0b-83f6-b78f52daeac2.targetQueue": "decision.engine.response.q",
+        "5d98358a-0e88-4b96-b0d4-be509a334064.queueName": "decision.engine.q"
+      },
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json",
+      "exposedConfig": {
+        "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f.retryCount": 3
+      },
+      "exposed": []
+    },
+    {
+      "id": "c3333333-3333-4333-8333-333333333333",
+      "type": "GO_SCRIPT",
+      "title": "Mapping Decision → Canonical",
+      "x": 432.0,
+      "y": 351.0,
+      "config": {
+        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.DECISION.MQ.OUT\\scripts\\go_script_c3333333.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "7abbd092-1af8-4e17-83db-39e2234fd336",
+      "source": "c1111111-1111-4111-8111-111111111111",
+      "target": "c2222222-2222-4222-8222-222222222222",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "03f1b0b3-d828-4978-b691-aee14b3a423f:IN"
+    },
+    {
+      "id": "d7ddf2ab-8d0e-4ce1-887f-47f494904ed4",
+      "source": "c2222222-2222-4222-8222-222222222222",
+      "target": "c1111111-1111-4111-8111-111111111111",
+      "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "28e7aca8-8d41-4240-8c8b-44f0d0b0e7ef",
+      "source": "c2222222-2222-4222-8222-222222222222",
+      "target": "c3333333-3333-4333-8333-333333333333",
+      "sourceTerminal": "5186c54c-69bd-41c7-93cc-80cc514e0e0a:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "2ef0e3d0-9855-4fbd-ae3e-9b118566148f",
+      "source": "c3333333-3333-4333-8333-333333333333",
+      "target": "c2222222-2222-4222-8222-222222222222",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f:IN"
+    }
+  ],
   "exposedConfig": {}
 }

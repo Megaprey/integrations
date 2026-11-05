@@ -2,7 +2,7 @@
   "version": "1.0",
   "openTabs": [
     {
-      "name": "Основной",
+      "name": "Adp.Pricing.HTTP.out",
       "type": "main",
       "file": "pipeline.json"
     }

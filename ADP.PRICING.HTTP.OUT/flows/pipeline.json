@@ -1,10 +1,85 @@
 {
-  "pipelineId": "a8242338-af0c-4da6-8e75-7d08d0043f03",
-  "name": "Основной",
-  "createdAt": 1793590413621,
-  "modifiedAt": 1793590413621,
+  "pipelineId": "3c1cb17d-723e-4580-8af1-584ffa1bb30e",
+  "name": "Adp.Pricing.HTTP.out",
+  "createdAt": 1793839285512,
+  "modifiedAt": 1793839285512,
   "isPattern": false,
-  "blocks": [],
-  "connections": [],
+  "blocks": [
+    {
+      "id": "d1111111-1111-4111-8111-111111111111",
+      "type": "GO_SCRIPT",
+      "title": "Mapping Canonical → Pricing",
+      "x": 516.0,
+      "y": 103.66666666666663,
+      "config": {
+        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.PRICING.HTTP.OUT\\scripts\\go_script_d1111111.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "d2222222-2222-4222-8222-222222222222",
+      "type": "SUPER_FLOW",
+      "title": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json",
+      "x": 527.6666666666667,
+      "y": 234.66666666666669,
+      "config": {
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8091/pricing"
+      },
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "5bc4af40-7a3a-4eda-9d95-0af89770b75e.json",
+      "exposedConfig": {
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.url": "http://localhost:8080/api",
+        "556002d6-5e4b-4441-b658-92b275156847.swaggerPath": "",
+        "ed995bfc-da05-41ba-a848-1d5df5075a45.targetQueue": "qyqy123",
+        "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0.method": "POST",
+        "556002d6-5e4b-4441-b658-92b275156847.messageType": "NONE",
+        "5d98358a-0e88-4b96-b0d4-be509a334064.queueName": "SDGHGJGSDFS"
+      },
+      "exposed": []
+    },
+    {
+      "id": "d3333333-3333-4333-8333-333333333333",
+      "type": "GO_SCRIPT",
+      "title": "Mapping Pricing → Canonical",
+      "x": 532.6666666666665,
+      "y": 354.33333333333326,
+      "config": {
+        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.PRICING.HTTP.OUT\\scripts\\go_script_d3333333.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "52b2c1d7-6a19-4f58-9935-9767f55faa95",
+      "source": "d1111111-1111-4111-8111-111111111111",
+      "target": "d2222222-2222-4222-8222-222222222222",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "03f1b0b3-d828-4978-b691-aee14b3a423f:IN"
+    },
+    {
+      "id": "a00bf8f2-0bcb-4d41-bc42-ce02ce0b3c71",
+      "source": "d2222222-2222-4222-8222-222222222222",
+      "target": "d1111111-1111-4111-8111-111111111111",
+      "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "9227f6ac-cc04-4f67-b60a-358fd09cdeac",
+      "source": "d2222222-2222-4222-8222-222222222222",
+      "target": "d3333333-3333-4333-8333-333333333333",
+      "sourceTerminal": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "08d8e25e-af69-4ea9-a64f-d90d8d110431",
+      "source": "d3333333-3333-4333-8333-333333333333",
+      "target": "d2222222-2222-4222-8222-222222222222",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "ed995bfc-da05-41ba-a848-1d5df5075a45:IN"
+    }
+  ],
   "exposedConfig": {}
 }

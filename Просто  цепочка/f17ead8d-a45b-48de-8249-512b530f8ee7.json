@@ -1,8 +1,8 @@
 {
-  "pipelineId": "9133c1aa-df83-4f60-af44-78f8436d5688",
+  "pipelineId": "0de35390-b898-48f0-9a7e-927777eefdf4",
   "name": "soapOut",
-  "createdAt": 1793619241935,
-  "modifiedAt": 1793619241935,
+  "createdAt": 1793845168748,
+  "modifiedAt": 1793845168748,
   "isPattern": false,
   "blocks": [
     {
@@ -38,8 +38,8 @@
       "id": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "type": "ELASTICSEARCH",
       "title": "Elasticsearch",
-      "x": 325.0,
-      "y": 509.3333333333332,
+      "x": 204.0,
+      "y": 378.6666666666666,
       "config": {
         "includeMetadata": true,
         "password": "",
@@ -59,8 +59,8 @@
       "id": "ce5cb2d2-2976-4f1d-b195-4e7b8e4c97b8",
       "type": "VERIFICATION",
       "title": "Verification",
-      "x": 608.9999999999999,
-      "y": 524.6666666666667,
+      "x": 429.9999999999999,
+      "y": 376.66666666666674,
       "config": {},
       "exposedConfig": {},
       "exposed": []
@@ -69,8 +69,8 @@
       "id": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
       "type": "SOAP_REQUEST",
       "title": "SOAP Request",
-      "x": 757.0000000000002,
-      "y": 341.0,
+      "x": 638.0000000000002,
+      "y": 368.0,
       "config": {
         "retryCount": 3,
         "useSOAPHeaders": true,
@@ -100,8 +100,8 @@
       "id": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "type": "ELASTICSEARCH",
       "title": "Elasticsearch",
-      "x": 966.6666666666663,
-      "y": 500.3333333333335,
+      "x": 837.6666666666663,
+      "y": 353.3333333333335,
       "config": {
         "includeMetadata": true,
         "password": "",
@@ -121,8 +121,8 @@
       "id": "ed995bfc-da05-41ba-a848-1d5df5075a45",
       "type": "MQ_OUTPUT",
       "title": "📨 TTYHGTRHTY",
-      "x": 1628.666666666667,
-      "y": 139.00000000000003,
+      "x": 860.666666666667,
+      "y": 169.00000000000003,
       "config": {
         "messageFormat": "MQSTR",
         "replyToQueueManager": "",
@@ -150,8 +150,8 @@
       "id": "63d6db50-f826-4420-950c-f6990d62569c",
       "type": "SUPERFLOW_IN",
       "title": "IN",
-      "x": 141.33333333333346,
-      "y": 535.0,
+      "x": 106.33333333333346,
+      "y": 400.6666666666667,
       "config": {},
       "exposedConfig": {},
       "exposed": []
@@ -160,8 +160,8 @@
       "id": "a8834350-b043-4a6e-8ef8-8147b1072787",
       "type": "SUPERFLOW_OUT",
       "title": "OUT",
-      "x": 477.3333333333333,
-      "y": 175.0,
+      "x": 326.3333333333333,
+      "y": 206.0,
       "config": {},
       "exposedConfig": {},
       "exposed": []
@@ -169,9 +169,9 @@
     {
       "id": "e42c7aad-9e40-45ea-a8d9-eab7c5efae2f",
       "type": "SUPERFLOW_IN",
-      "title": "IN",
-      "x": 1098.0,
-      "y": 219.6666666666666,
+      "title": "IN2",
+      "x": 729.0,
+      "y": 188.6666666666666,
       "config": {},
       "exposedConfig": {},
       "exposed": []
@@ -179,9 +179,9 @@
     {
       "id": "a1ed89b9-ad06-475d-985f-1f218e134d70",
       "type": "SUPERFLOW_OUT",
-      "title": "OUT",
-      "x": 1321.3333333333335,
-      "y": 656.3333333333334,
+      "title": "OUT2",
+      "x": 1024.6666666666667,
+      "y": 374.33333333333337,
       "config": {},
       "exposedConfig": {},
       "exposed": []
@@ -189,49 +189,49 @@
   ],
   "connections": [
     {
-      "id": "7ea592f0-f36b-443f-93fe-cee60ea35251",
+      "id": "fbc657f8-e0f4-422f-add5-a14736466791",
       "source": "ce5cb2d2-2976-4f1d-b195-4e7b8e4c97b8",
       "target": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "a23b047a-2902-4350-9b9a-f843bb99cdd7",
+      "id": "5c20bd80-02d0-4ff9-a664-531fc42b7587",
       "source": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "target": "ce5cb2d2-2976-4f1d-b195-4e7b8e4c97b8",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "7dd246ca-a1df-4c58-b1ef-d4f92d532030",
+      "id": "4d669836-ed6c-4e19-9255-5b5b8789d7a6",
       "source": "5d98358a-0e88-4b96-b0d4-be509a334064",
       "target": "a8834350-b043-4a6e-8ef8-8147b1072787",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "2f818df0-f0a7-4a02-90a1-958f4034e877",
+      "id": "5981000e-8392-4e2d-b541-57cd6132c152",
       "source": "63d6db50-f826-4420-950c-f6990d62569c",
       "target": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "9ddbce25-d49e-446d-b5ec-3f782d139cf3",
+      "id": "2044398a-990b-4ef2-bac6-1c1ff81b979f",
       "source": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
       "target": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "sourceTerminal": "RESPONSE",
       "targetTerminal": "IN"
     },
     {
-      "id": "3ea36d5c-003b-471b-8af1-c8c91aa655f3",
+      "id": "d76c54a4-f3ba-4382-aeb2-ab34f5a912b6",
       "source": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "target": "a1ed89b9-ad06-475d-985f-1f218e134d70",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "cfb5ee8b-f7d9-400f-ab73-cddcd18c5a65",
+      "id": "52dbb33e-b292-48ad-84c0-45b61a734c2b",
       "source": "e42c7aad-9e40-45ea-a8d9-eab7c5efae2f",
       "target": "ed995bfc-da05-41ba-a848-1d5df5075a45",
       "sourceTerminal": "OUT",

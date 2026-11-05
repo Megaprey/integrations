@@ -1,10 +1,76 @@
 {
-  "pipelineId": "d3273c87-1984-4f74-8c8b-112e686855ff",
-  "name": "Основной",
-  "createdAt": 1793590406904,
-  "modifiedAt": 1793590406904,
+  "pipelineId": "72a09e4f-6180-4701-8f9f-219b371ed009",
+  "name": "Adp.BKI.SOAP.out",
+  "createdAt": 1793840173826,
+  "modifiedAt": 1793840173826,
   "isPattern": false,
-  "blocks": [],
-  "connections": [],
+  "blocks": [
+    {
+      "id": "93d9fa01-8d00-4df7-b3b7-8a8801b8ef3a",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 324.3333333333333,
+      "y": 61.33333333333337,
+      "config": {
+        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.BKI.SOAP.OUT\\scripts\\go_script_93d9fa01.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "f6a71a03-5351-4e97-8bd3-4b5b20106b35",
+      "type": "GO_SCRIPT",
+      "title": "Go Script",
+      "x": 349.66666666666674,
+      "y": 367.33333333333337,
+      "config": {
+        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.BKI.SOAP.OUT\\scripts\\go_script_f6a71a03.go"
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "83fa1ff8-849f-4342-8801-8893a2db8b11",
+      "type": "SUPER_FLOW",
+      "title": "f17ead8d-a45b-48de-8249-512b530f8ee7.json",
+      "x": 339.3333333333333,
+      "y": 205.0,
+      "config": {},
+      "referenceProjectName": "Просто  цепочка",
+      "referenceFileName": "f17ead8d-a45b-48de-8249-512b530f8ee7.json",
+      "exposedConfig": {},
+      "exposed": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "ec893476-38da-41e2-ab01-7dfb6244d912",
+      "source": "93d9fa01-8d00-4df7-b3b7-8a8801b8ef3a",
+      "target": "83fa1ff8-849f-4342-8801-8893a2db8b11",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "03f1b0b3-d828-4978-b691-aee14b3a423f:IN"
+    },
+    {
+      "id": "f6a21e0d-fce8-4045-936c-304e07ebbeee",
+      "source": "83fa1ff8-849f-4342-8801-8893a2db8b11",
+      "target": "93d9fa01-8d00-4df7-b3b7-8a8801b8ef3a",
+      "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "5d13d3c0-7733-48fb-a48f-19e3a8158fb1",
+      "source": "83fa1ff8-849f-4342-8801-8893a2db8b11",
+      "target": "f6a71a03-5351-4e97-8bd3-4b5b20106b35",
+      "sourceTerminal": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "7053b6a2-d330-4064-97c9-bd1c319b2125",
+      "source": "f6a71a03-5351-4e97-8bd3-4b5b20106b35",
+      "target": "83fa1ff8-849f-4342-8801-8893a2db8b11",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "ed995bfc-da05-41ba-a848-1d5df5075a45:IN"
+    }
+  ],
   "exposedConfig": {}
 }

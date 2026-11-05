@@ -1,8 +1,8 @@
 {
-  "pipelineId": "aee142e2-f638-48f0-848c-2a8b4f585acb",
+  "pipelineId": "c838e51d-477e-4696-9fcb-89754caac259",
   "name": "Adp.AF.MQ.out",
-  "createdAt": 1793531648071,
-  "modifiedAt": 1793531648071,
+  "createdAt": 1793840795921,
+  "modifiedAt": 1793840795921,
   "isPattern": false,
   "blocks": [
     {
@@ -10,7 +10,7 @@
       "type": "SUPER_FLOW",
       "title": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json",
       "x": 440.00000000000057,
-      "y": 203.0,
+      "y": 213.0,
       "config": {},
       "referenceProjectName": "Просто  цепочка",
       "referenceFileName": "2cd88bdf-b217-4239-a2d4-3f0c569d85bd.json",
@@ -26,7 +26,7 @@
       "x": 441.3333333333335,
       "y": 327.6666666666666,
       "config": {
-        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.AF.MQ.OUT\\scripts\\go_script_d68a2846.go"
+        "scriptFile": "go_script_d68a2846.go"
       },
       "exposedConfig": {},
       "exposed": []
@@ -35,10 +35,10 @@
       "id": "b63d2de8-2c85-4e9c-9d19-92a68537c522",
       "type": "GO_SCRIPT",
       "title": "Go Script",
-      "x": 447.6666666666666,
-      "y": 93.00000000000006,
+      "x": 440.6666666666666,
+      "y": 95.00000000000006,
       "config": {
-        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.AF.MQ.OUT\\scripts\\go_script_b63d2de8.go"
+        "scriptFile": "go_script_b63d2de8.go"
       },
       "exposedConfig": {},
       "exposed": []
@@ -46,28 +46,28 @@
   ],
   "connections": [
     {
-      "id": "a7743af5-4dca-41dc-b708-218bdbf98d21",
-      "source": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
-      "target": "b63d2de8-2c85-4e9c-9d19-92a68537c522",
-      "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
-      "targetTerminal": "IN"
-    },
-    {
-      "id": "4914803d-97f0-4021-b4a4-51c0166dbc6a",
+      "id": "f647e460-e23c-4963-b604-1cd6a373d9c0",
       "source": "b63d2de8-2c85-4e9c-9d19-92a68537c522",
       "target": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
       "sourceTerminal": "OUT",
       "targetTerminal": "03f1b0b3-d828-4978-b691-aee14b3a423f:IN"
     },
     {
-      "id": "584613e7-7ff2-414d-99d7-d01b80703800",
+      "id": "3a4b4f33-a481-4713-8e9a-52df0459a9c8",
+      "source": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
+      "target": "b63d2de8-2c85-4e9c-9d19-92a68537c522",
+      "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "c36f0208-1bf7-46e0-9c6a-84f4493f7078",
       "source": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
       "target": "d68a2846-ed94-4083-9d10-57cf2107e1dc",
       "sourceTerminal": "5186c54c-69bd-41c7-93cc-80cc514e0e0a:OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "29035b30-b80d-4bce-a33c-09103b2cc668",
+      "id": "18393fdc-8be0-412d-b2ba-2220958fa2bd",
       "source": "d68a2846-ed94-4083-9d10-57cf2107e1dc",
       "target": "59e9691c-4ea8-4e8a-a404-db6008cc1ea6",
       "sourceTerminal": "OUT",

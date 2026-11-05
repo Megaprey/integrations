@@ -1,8 +1,8 @@
 {
-  "pipelineId": "6c13f606-1551-404d-be84-485af62864ee",
+  "pipelineId": "c013de4a-cce1-4fed-930a-011b896a6ec8",
   "name": "mqOut",
-  "createdAt": 1793619241931,
-  "modifiedAt": 1793619241931,
+  "createdAt": 1793845168739,
+  "modifiedAt": 1793845168739,
   "isPattern": false,
   "blocks": [
     {
@@ -93,9 +93,9 @@
     {
       "id": "e3dc4475-f5f4-4349-8407-4470ca0e40a7",
       "type": "SUPERFLOW_IN",
-      "title": "IN",
-      "x": 438.0,
-      "y": 454.0,
+      "title": "IN2",
+      "x": 439.0,
+      "y": 455.0,
       "config": {},
       "exposedConfig": {},
       "exposed": []
@@ -163,7 +163,7 @@
     {
       "id": "5186c54c-69bd-41c7-93cc-80cc514e0e0a",
       "type": "MQ_INPUT",
-      "title": "📥 123321123WQEWAS",
+      "title": "📥 ADP.AF.RQ",
       "x": 86.0,
       "y": 418.0,
       "config": {
@@ -179,7 +179,7 @@
         "failIfQuiescing": true,
         "ccsid": 1208,
         "transactionType": "local",
-        "queueName": "123321123WQEWAS",
+        "queueName": "ADP.AF.RQ",
         "queueManager": "QMGR1",
         "rollbackOnError": true,
         "transportType": "MQCNO_CLIENT",
@@ -192,7 +192,7 @@
     {
       "id": "9e13cd30-cfc7-4d08-a735-fe4f7570bdb7",
       "type": "SUPERFLOW_OUT",
-      "title": "OUT",
+      "title": "OUT2",
       "x": 274.0,
       "y": 426.0,
       "config": {},
@@ -202,42 +202,42 @@
   ],
   "connections": [
     {
-      "id": "569b22d1-804d-4cfc-91eb-fb98ad757630",
+      "id": "7443db67-aa68-4c3b-98a0-7bec4da2de29",
       "source": "5d98358a-0e88-4b96-b0d4-be509a334064",
       "target": "0f87aabf-bf0b-4abd-9472-bf9dcdb9c689",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "325ddd28-b3f4-4c9b-926f-1294e862c269",
+      "id": "589f3f7f-2128-4960-af7b-d02e2c5a991f",
       "source": "6af19a51-0815-474d-85d5-8885291b1de5",
       "target": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "3621207f-017a-4c4b-bb18-91cf8e415355",
+      "id": "82e3bf10-48f3-4a63-9470-81325da8535b",
       "source": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "target": "4c8db485-d0d8-4d4a-abd3-eaef792b34f8",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "7725c3f2-c0b1-4ff2-b58a-fb2d72152725",
+      "id": "6f565875-bde5-4738-ad20-3152c072d8c3",
       "source": "4c8db485-d0d8-4d4a-abd3-eaef792b34f8",
       "target": "01600ab9-086d-4d0b-83f6-b78f52daeac2",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "85cc7ecc-7b1d-41e6-92cc-ca6a8064f75d",
+      "id": "0ca5c52b-6327-4e19-9d58-e8a696728ccd",
       "source": "e3dc4475-f5f4-4349-8407-4470ca0e40a7",
       "target": "018d97a7-3bf1-4ae3-8c3d-685e409d9f7f",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "4e58a56a-89df-42f1-a379-3f6f79d8de15",
+      "id": "e30e090f-3ffc-47dc-88c2-15de130fe08e",
       "source": "5186c54c-69bd-41c7-93cc-80cc514e0e0a",
       "target": "9e13cd30-cfc7-4d08-a735-fe4f7570bdb7",
       "sourceTerminal": "OUT",

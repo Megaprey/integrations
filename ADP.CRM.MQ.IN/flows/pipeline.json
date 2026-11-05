@@ -1,8 +1,8 @@
 {
-  "pipelineId": "f67d8f28-41ba-4eb8-ae9f-cda8a381216b",
+  "pipelineId": "79761651-d5d2-45c2-b332-f95c97580c5b",
   "name": "Adp.CRM.MQ.in",
-  "createdAt": 1793532528929,
-  "modifiedAt": 1793532528929,
+  "createdAt": 1793839861798,
+  "modifiedAt": 1793839861798,
   "isPattern": false,
   "blocks": [
     {
@@ -22,7 +22,7 @@
       "type": "SUPER_FLOW",
       "title": "032e3c97-8d5d-4345-ad32-141fb1bcf282.json",
       "x": 434.3333333333335,
-      "y": 212.0000000000001,
+      "y": 211.0000000000001,
       "config": {},
       "referenceProjectName": "Просто  цепочка",
       "referenceFileName": "032e3c97-8d5d-4345-ad32-141fb1bcf282.json",
@@ -44,28 +44,28 @@
   ],
   "connections": [
     {
-      "id": "f37a146e-80b6-4144-9c22-076885bd55e1",
+      "id": "69574df2-1867-40bb-8900-f500814d606f",
       "source": "f9208db8-d7fd-43e8-8c2c-48f7334167f0",
       "target": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
       "sourceTerminal": "OUT",
       "targetTerminal": "335cff37-c9e5-4778-a8db-a37693f19d6d:IN"
     },
     {
-      "id": "262b13db-1420-412c-9a9b-9516086745f6",
+      "id": "42e5f55e-bf3d-41e7-94fb-4374402b05de",
       "source": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
       "target": "f9208db8-d7fd-43e8-8c2c-48f7334167f0",
       "sourceTerminal": "e06a524c-ad34-47ec-b7c3-0b72867cfdf4:OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "c23725c0-3743-4a49-9028-03f2bd9f84eb",
+      "id": "9988f88d-d01a-4e90-9202-8084d3e0f109",
       "source": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
       "target": "ce39f6a8-d4c1-4e93-9f07-093bd9fbcbb1",
       "sourceTerminal": "cf51df1f-49f8-47b5-a784-9873bbda12f4:OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "5af2e30a-79c2-4d87-826f-795a7d9d8fc7",
+      "id": "718c52db-5c8e-41cd-8a7d-ba0d4128960a",
       "source": "ce39f6a8-d4c1-4e93-9f07-093bd9fbcbb1",
       "target": "caf9ab5f-e8f2-4e05-931b-2ce3bb3d2fc9",
       "sourceTerminal": "OUT",
