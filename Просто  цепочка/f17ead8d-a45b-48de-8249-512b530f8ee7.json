@@ -1,8 +1,8 @@
 {
-  "pipelineId": "0de35390-b898-48f0-9a7e-927777eefdf4",
+  "pipelineId": "d47a4b2f-c9fa-40c7-a544-c4eb56894546",
   "name": "soapOut",
-  "createdAt": 1793845168748,
-  "modifiedAt": 1793845168748,
+  "createdAt": 1793970559858,
+  "modifiedAt": 1793970559858,
   "isPattern": false,
   "blocks": [
     {
@@ -37,13 +37,13 @@
     {
       "id": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "type": "ELASTICSEARCH",
-      "title": "Elasticsearch",
-      "x": 204.0,
-      "y": 378.6666666666666,
+      "title": "🔍 ES: bki",
+      "x": 191.0,
+      "y": 390.6666666666666,
       "config": {
         "includeMetadata": true,
         "password": "",
-        "indexName": "pipeline-data",
+        "indexName": "bki",
         "host": "http://localhost:9200",
         "documentIdField": "",
         "includeHeaders": true,
@@ -56,33 +56,23 @@
       "exposed": []
     },
     {
-      "id": "ce5cb2d2-2976-4f1d-b195-4e7b8e4c97b8",
-      "type": "VERIFICATION",
-      "title": "Verification",
-      "x": 429.9999999999999,
-      "y": 376.66666666666674,
-      "config": {},
-      "exposedConfig": {},
-      "exposed": []
-    },
-    {
       "id": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
       "type": "SOAP_REQUEST",
-      "title": "SOAP Request",
-      "x": 638.0000000000002,
-      "y": 368.0,
+      "title": "📤 SOAP: фыв",
+      "x": 623.0000000000002,
+      "y": 396.0,
       "config": {
         "retryCount": 3,
         "useSOAPHeaders": true,
-        "portName": "",
+        "portName": "фыв",
         "soapAction": "",
-        "serviceName": "",
+        "serviceName": "фыв",
         "encoding": "UTF-8",
         "timeout": 30000,
-        "wsdlLocation": "",
+        "wsdlLocation": "http://localhost:8083/soap/bki",
         "retryDelay": 1000,
         "preserveNamespace": true,
-        "endpoint": "http://localhost:8080/bki",
+        "endpoint": "http://localhost:8083/soap/bki",
         "wsPassword": "",
         "wsTimestamp": true,
         "wsUsername": "",
@@ -90,7 +80,7 @@
         "errorHandler": "THROW",
         "authenticationType": "NONE",
         "enableMTOM": false,
-        "operation": "",
+        "operation": "фыв",
         "soapVersion": "SOAP_1_1"
       },
       "exposedConfig": {},
@@ -99,13 +89,13 @@
     {
       "id": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "type": "ELASTICSEARCH",
-      "title": "Elasticsearch",
-      "x": 837.6666666666663,
-      "y": 353.3333333333335,
+      "title": "🔍 ES: bki",
+      "x": 834.6666666666663,
+      "y": 392.3333333333335,
       "config": {
         "includeMetadata": true,
         "password": "",
-        "indexName": "pipeline-data",
+        "indexName": "bki",
         "host": "http://localhost:9200",
         "documentIdField": "",
         "includeHeaders": true,
@@ -180,60 +170,75 @@
       "id": "a1ed89b9-ad06-475d-985f-1f218e134d70",
       "type": "SUPERFLOW_OUT",
       "title": "OUT2",
-      "x": 1024.6666666666667,
-      "y": 374.33333333333337,
+      "x": 1080.6666666666667,
+      "y": 406.33333333333337,
       "config": {},
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "220f3aa5-ad68-4870-8d9f-afaedc34615d",
+      "type": "VALIDATE",
+      "title": "✅ Validate",
+      "x": 405.0,
+      "y": 385.0,
+      "config": {
+        "xmlSchemaPath": "",
+        "swaggerPath": "",
+        "messageType": "NONE",
+        "requiredFields": ""
+      },
       "exposedConfig": {},
       "exposed": []
     }
   ],
   "connections": [
     {
-      "id": "fbc657f8-e0f4-422f-add5-a14736466791",
-      "source": "ce5cb2d2-2976-4f1d-b195-4e7b8e4c97b8",
-      "target": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
-      "sourceTerminal": "OUT",
-      "targetTerminal": "IN"
-    },
-    {
-      "id": "5c20bd80-02d0-4ff9-a664-531fc42b7587",
-      "source": "03f1b0b3-d828-4978-b691-aee14b3a423f",
-      "target": "ce5cb2d2-2976-4f1d-b195-4e7b8e4c97b8",
-      "sourceTerminal": "OUT",
-      "targetTerminal": "IN"
-    },
-    {
-      "id": "4d669836-ed6c-4e19-9255-5b5b8789d7a6",
+      "id": "b7922efb-24ee-4977-a605-34a0914559be",
       "source": "5d98358a-0e88-4b96-b0d4-be509a334064",
       "target": "a8834350-b043-4a6e-8ef8-8147b1072787",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "5981000e-8392-4e2d-b541-57cd6132c152",
+      "id": "c1b27a93-4e42-4620-a6f9-2fda81650a5e",
       "source": "63d6db50-f826-4420-950c-f6990d62569c",
       "target": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "2044398a-990b-4ef2-bac6-1c1ff81b979f",
+      "id": "511968d4-fcf0-4044-94b2-069927db48cf",
       "source": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
       "target": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "sourceTerminal": "RESPONSE",
       "targetTerminal": "IN"
     },
     {
-      "id": "d76c54a4-f3ba-4382-aeb2-ab34f5a912b6",
+      "id": "eb1d8744-53a3-4cf0-b6bc-e6c598d55563",
       "source": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "target": "a1ed89b9-ad06-475d-985f-1f218e134d70",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "52dbb33e-b292-48ad-84c0-45b61a734c2b",
+      "id": "d78046de-41e6-4a12-9a1f-074af5c362aa",
       "source": "e42c7aad-9e40-45ea-a8d9-eab7c5efae2f",
       "target": "ed995bfc-da05-41ba-a848-1d5df5075a45",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "f23435a7-cd23-42ae-9176-a1f666c4acd5",
+      "source": "03f1b0b3-d828-4978-b691-aee14b3a423f",
+      "target": "220f3aa5-ad68-4870-8d9f-afaedc34615d",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "1077fe03-c914-41e0-a1ce-2852a5cc53fe",
+      "source": "220f3aa5-ad68-4870-8d9f-afaedc34615d",
+      "target": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     }

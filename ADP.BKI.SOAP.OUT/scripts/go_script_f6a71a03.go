@@ -2,54 +2,175 @@ package main
 
 import (
 	"encoding/json"
+	"encoding/xml"
+	"fmt"
+	"io"
 	"log"
-
-	"github.com/go-viper/mapstructure/v2"
+	"strconv"
+	"strings"
 )
 
-type InnerBkiSource_e5f6a7b5 struct {
-    Bureau         string `mapstructure:"bureau"         json:"bureau_inner441"`
-    Score          int    `mapstructure:"score"          json:"score_inner442"`
-    ActiveLoans    int    `mapstructure:"activeLoans"    json:"activeLoans_inner443"`
-    TotalDebt      int    `mapstructure:"totalDebt"      json:"totalDebt_inner444"`
-    OverdueMaxDays int    `mapstructure:"overdueMaxDays" json:"overdueMaxDays_inner445"`
-}
-type InnerBkiSummary_e5f6a7b5 struct {
-    WorstStatus           string `mapstructure:"worstStatus"           json:"worstStatus_inner451"`
-    HasBankruptcy         bool   `mapstructure:"hasBankruptcy"         json:"hasBankruptcy_inner452"`
-    HasCurrentDelinquency bool   `mapstructure:"hasCurrentDelinquency" json:"hasCurrentDelinquency_inner453"`
-}
-type InnerMessage_e5f6a7b5 struct {
-    RequestID string                  `mapstructure:"requestId" json:"requestId_inner461"`
-    Status    string                  `mapstructure:"status"    json:"status_inner462"`
-    Sources   []InnerBkiSource_e5f6a7b5 `mapstructure:"sources"   json:"sources_inner463"`
-    Summary   InnerBkiSummary_e5f6a7b5  `mapstructure:"summary"   json:"summary_inner464"`
-}
+// === Скрипт: XML → JSON для БКИ ===
+func Process_f6a71a03(msg Message, sender MessageSender) error {
+	log.Printf("🔄 XML → JSON (BKI): обработка %s", msg.ID)
 
-func Process_f6a71a03(msg Message, output MessageSender) Message {
-    log.Printf("🐹 Go Script (out→inner, ID e5f6a7b5)")
-    if msg.Headers == nil { msg.Headers = make(map[string]string) }
-    for _, key := range []string{"Sender", "Receiver", "ProcessName"} {
-        if _, ok := msg.Headers[key]; ok { continue }
-        if msg.Data != nil { if v, ok := msg.Data[key].(string); ok && v != "" { msg.Headers[key] = v } }
-    }
-    var raw map[string]interface{}
-    if err := json.Unmarshal(msg.Body, &raw); err != nil { log.Printf("❌ parse: %v", err); sendOrWarn(msg, output); return msg }
-    var inner InnerMessage_e5f6a7b5
-    if err := mapstructure.Decode(raw, &inner); err != nil { log.Printf("❌ decode: %v", err); sendOrWarn(msg, output); return msg }
-    newBody, err := json.Marshal(inner)
-    if err != nil { log.Printf("❌ marshal: %v", err); sendOrWarn(msg, output); return msg }
-    msg.Body = newBody; msg.IsJSON = true; msg.Data = inner
-    log.Printf("   • Body: %s", string(msg.Body))
-    sendOrWarn(msg, output); return msg
-}
+	result, err := parseSoapBody(msg.Body, "BkiReportResponse")
+	if err != nil {
+		log.Printf("❌ Ошибка парсинга XML: %v", err)
+		return err
+	}
 
-func sendOrWarn(msg Message, output MessageSender) {
-	if output != nil {
-		if err := output.Send(msg); err != nil {
+	jsonBytes, err := json.Marshal(result)
+	if err != nil {
+		log.Printf("❌ Ошибка сериализации JSON: %v", err)
+		return err
+	}
+
+	outMsg := Message{
+		ID:            msg.ID,
+		Body:          jsonBytes,
+		Data:          result,
+		IsJSON:        true,
+		Headers:       msg.Headers,
+		AggregateName: msg.AggregateName,
+		AggregateID:   msg.AggregateID,
+		CorrelationID: msg.CorrelationID,
+		ReplyTo:       msg.ReplyTo,
+	}
+
+	log.Printf("✅ XML → JSON готов (BKI): %s", string(jsonBytes))
+
+	if sender != nil {
+		if err := sender.Send(outMsg); err != nil {
 			log.Printf("❌ Ошибка отправки: %v", err)
+			return err
+		}
+	}
+	return nil
+}
+
+// parseSoapBody — вытаскивает указанный элемент из <soap:Body> и превращает в map
+func parseSoapBody(data []byte, targetElement string) (map[string]interface{}, error) {
+	decoder := xml.NewDecoder(strings.NewReader(string(data)))
+	inBody := false
+
+	for {
+		tok, err := decoder.Token()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return nil, err
+		}
+
+		switch t := tok.(type) {
+		case xml.StartElement:
+			if t.Name.Local == "Body" {
+				inBody = true
+			} else if inBody && t.Name.Local == targetElement {
+				val, err := decodeElement(decoder, &t)
+				if err != nil {
+					return nil, err
+				}
+				if m, ok := val.(map[string]interface{}); ok {
+					return m, nil
+				}
+				return map[string]interface{}{targetElement: val}, nil
+			}
+		}
+	}
+	return nil, fmt.Errorf("элемент <%s> не найден", targetElement)
+}
+
+// decodeElement — рекурсивно возвращает значение (string/float64/bool/map/[]interface{})
+func decodeElement(decoder *xml.Decoder, start *xml.StartElement) (interface{}, error) {
+	var text strings.Builder
+	children := make(map[string]interface{})
+	hasChildren := false
+
+	for {
+		tok, err := decoder.Token()
+		if err != nil {
+			return nil, err
+		}
+
+		switch t := tok.(type) {
+		case xml.StartElement:
+			hasChildren = true
+			childVal, err := decodeElement(decoder, &t)
+			if err != nil {
+				return nil, err
+			}
+			addToMap(children, t.Name.Local, childVal)
+		case xml.CharData:
+			text.Write(t)
+		case xml.EndElement:
+			if t.Name.Local == start.Name.Local {
+				if hasChildren {
+					// «Поднимаем» единственного ребёнка-массив для известных полей
+					if shouldFlatten(start.Name.Local, children) {
+						for _, v := range children {
+							if arr, ok := v.([]interface{}); ok {
+								return arr, nil
+							}
+						}
+					}
+					return children, nil
+				}
+				s := strings.TrimSpace(text.String())
+				if s == "" {
+					return nil, nil
+				}
+				// 1. Сначала число (приоритетнее, чтобы "0" → 0, а не false)
+				if n, err := strconv.ParseFloat(s, 64); err == nil {
+					return n, nil
+				}
+				// 2. Потом bool ("true"/"false")
+				if b, err := strconv.ParseBool(s); err == nil {
+					return b, nil
+				}
+				// 3. Иначе — строка
+				return s, nil
+			}
+		}
+	}
+}
+
+// shouldFlatten — «поднимать» ли единственного ребёнка-массив
+func shouldFlatten(parentName string, children map[string]interface{}) bool {
+	flattenParents := map[string]bool{
+		"sources":     true,
+		"documents":   true,
+		"consents":    true,
+		"items":       true,
+		"checks":      true,
+		"flags":       true,
+		"reasonCodes": true,
+		"proceedings": true,
+	}
+	if !flattenParents[parentName] {
+		return false
+	}
+	if len(children) != 1 {
+		return false
+	}
+	for _, v := range children {
+		if _, ok := v.([]interface{}); ok {
+			return true
+		}
+	}
+	return false
+}
+
+// addToMap — добавляет значение, повторяющиеся ключи → массив
+func addToMap(m map[string]interface{}, key string, value interface{}) {
+	if existing, ok := m[key]; ok {
+		if arr, ok := existing.([]interface{}); ok {
+			m[key] = append(arr, value)
+		} else {
+			m[key] = []interface{}{existing, value}
 		}
 	} else {
-		log.Printf("⚠️ output sender не установлен")
+		m[key] = value
 	}
 }

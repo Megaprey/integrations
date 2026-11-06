@@ -2,58 +2,131 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
-
-	"github.com/go-viper/mapstructure/v2"
 )
 
-type BkiClientOut_d4e5f6a4 struct {
-    FirstName      string `mapstructure:"firstName_inner401"      json:"firstName"`
-    LastName       string `mapstructure:"lastName_inner402"       json:"lastName"`
-    MiddleName     string `mapstructure:"middleName_inner403"     json:"middleName"`
-    BirthDate      string `mapstructure:"birthDate_inner404"      json:"birthDate"`
-    PassportSeries string `mapstructure:"passportSeries_inner405" json:"passportSeries"`
-    PassportNumber string `mapstructure:"passportNumber_inner406" json:"passportNumber"`
-    Inn            string `mapstructure:"inn_inner407"            json:"inn"`
-    Snils          string `mapstructure:"snils_inner408"          json:"snils"`
-}
-type BkiConsentOut_d4e5f6a4 struct {
-    Granted     bool   `mapstructure:"granted_inner421"     json:"granted"`
-    DocumentRef string `mapstructure:"documentRef_inner422" json:"documentRef"`
-}
-type OutMessage_d4e5f6a4 struct {
-    RequestID      string                `mapstructure:"requestId_inner431"      json:"requestId"`
-    ApplicationID  string                `mapstructure:"applicationId_inner432"  json:"applicationId"`
-    Client         BkiClientOut_d4e5f6a4 `mapstructure:"client_inner433"         json:"client"`
-    RequestedFrom  []string              `mapstructure:"requestedFrom_inner434"  json:"requestedFrom"`
-    RequestPurpose string                `mapstructure:"requestPurpose_inner435" json:"requestPurpose"`
-    Consent        BkiConsentOut_d4e5f6a4 `mapstructure:"consent_inner436"       json:"consent"`
-}
+// === Скрипт: JSON → XML для БКИ ===
+func Process_93d9fa01(msg Message, sender MessageSender) error {
+	log.Printf("🔄 JSON → XML (BKI): обработка %s", msg.ID)
 
-func Process_93d9fa01(msg Message, output MessageSender) Message {
-    log.Printf("🐹 Go Script (inner→out, ID d4e5f6a4)")
-    if msg.Headers == nil { msg.Headers = make(map[string]string) }
-    for _, key := range []string{"Sender", "Receiver", "ProcessName"} {
-        if _, ok := msg.Headers[key]; ok { continue }
-        if msg.Data != nil { if v, ok := msg.Data[key].(string); ok && v != "" { msg.Headers[key] = v; delete(msg.Data, key) } }
-    }
-    var raw map[string]interface{}
-    if err := json.Unmarshal(msg.Body, &raw); err != nil { log.Printf("❌ parse: %v", err); sendOrWarn(msg, output); return msg }
-    var out OutMessage_d4e5f6a4
-    if err := mapstructure.Decode(raw, &out); err != nil { log.Printf("❌ decode: %v", err); sendOrWarn(msg, output); return msg }
-    newBody, err := json.Marshal(out)
-    if err != nil { log.Printf("❌ marshal: %v", err); sendOrWarn(msg, output); return msg }
-    msg.Body = newBody; msg.IsJSON = true; msg.Data = out
-    log.Printf("   • Body: %s", string(msg.Body))
-    sendOrWarn(msg, output); return msg
-}
-
-func sendOrWarn(msg Message, output MessageSender) {
-	if output != nil {
-		if err := output.Send(msg); err != nil {
-			log.Printf("❌ Ошибка отправки: %v", err)
-		}
-	} else {
-		log.Printf("⚠️ output sender не установлен")
+	payload, ok := msg.Data["payload"].(map[string]interface{})
+	if !ok {
+		payload = msg.Data
 	}
+
+	applicationId := ""
+	if env, ok := msg.Data["envelope"].(map[string]interface{}); ok {
+		if v, ok := env["applicationId"].(string); ok {
+			applicationId = v
+		}
+	}
+
+	client, _ := payload["client"].(map[string]interface{})
+	passport, _ := client["passport"].(map[string]interface{})
+
+	bkiDocRef := ""
+	if consents, ok := payload["consents"].([]interface{}); ok {
+		for _, c := range consents {
+			cm, _ := c.(map[string]interface{})
+			if cm["type"] == "BKI_REQUEST" {
+				bkiDocRef, _ = cm["documentRef"].(string)
+			}
+		}
+	}
+
+	xmlBody := fmt.Sprintf(`<BkiReportRequest>
+  <applicationId>%s</applicationId>
+  <client>
+    <firstName>%s</firstName>
+    <lastName>%s</lastName>
+    <birthDate>%s</birthDate>
+    <passportSeries>%s</passportSeries>
+    <passportNumber>%s</passportNumber>
+    <inn>%s</inn>
+    <snils>%s</snils>
+  </client>
+  <requestedFrom>NBKI</requestedFrom>
+  <requestedFrom>OKB</requestedFrom>
+  <consent>
+    <granted>true</granted>
+    <documentRef>%s</documentRef>
+  </consent>
+</BkiReportRequest>`,
+		escapeXml(applicationId),
+		escapeXml(strVal(client["firstName"])),
+		escapeXml(strVal(client["lastName"])),
+		escapeXml(strVal(client["birthDate"])),
+		escapeXml(strVal(passport["series"])),
+		escapeXml(strVal(passport["number"])),
+		escapeXml(strVal(client["inn"])),
+		escapeXml(strVal(client["snils"])),
+		escapeXml(bkiDocRef),
+	)
+
+	outMsg := Message{
+		ID:            msg.ID,
+		Body:          []byte(xmlBody),
+		IsJSON:        false,
+		Headers:       msg.Headers,
+		AggregateName: msg.AggregateName,
+		AggregateID:   msg.AggregateID,
+		CorrelationID: msg.CorrelationID,
+		ReplyTo:       msg.ReplyTo,
+	}
+
+	log.Printf("✅ JSON → XML готов (BKI), %d байт", len(xmlBody))
+
+	if sender != nil {
+		if err := sender.Send(outMsg); err != nil {
+			log.Printf("❌ Ошибка отправки: %v", err)
+			return err
+		}
+	}
+	return nil
+}
+
+func strVal(v interface{}) string {
+	if v == nil {
+		return ""
+	}
+	if s, ok := v.(string); ok {
+		return s
+	}
+	if n, ok := v.(float64); ok {
+		if n == float64(int64(n)) {
+			return fmt.Sprintf("%d", int64(n))
+		}
+		return fmt.Sprintf("%v", n)
+	}
+	b, _ := json.Marshal(v)
+	return string(b)
+}
+
+func escapeXml(s string) string {
+	s = replaceAll(s, "&", "&amp;")
+	s = replaceAll(s, "<", "&lt;")
+	s = replaceAll(s, ">", "&gt;")
+	s = replaceAll(s, `"`, "&quot;")
+	s = replaceAll(s, "'", "&apos;")
+	return s
+}
+
+func replaceAll(s, old, new string) string {
+	for {
+		i := indexOf(s, old)
+		if i < 0 {
+			return s
+		}
+		s = s[:i] + new + s[i+len(old):]
+	}
+}
+
+func indexOf(s, sub string) int {
+	for i := 0; i+len(sub) <= len(s); i++ {
+		if s[i:i+len(sub)] == sub {
+			return i
+		}
+	}
+	return -1
 }
