@@ -1,0 +1,61 @@
+{
+  "requestId_inner651": "req-fs-2026-10-05-001",
+  "applicationId_inner652": "app-2026-10-05-987654",
+  "clientId_inner653": "CLI-998877",
+  "featureGroups_inner654": [
+    "CLIENT_DEMOGRAPHICS",
+    "BKI_AGGREGATES",
+    "INTERNAL_BEHAVIOR",
+    "PRODUCT_CONTEXT",
+    "ANTIFRAUD_SIGNALS"
+  ],
+  "inputs_inner655": {
+    "kyc_inner641": "VERIFIED",
+    "bki_inner642": {
+      "score_inner601": 720,
+      "activeLoans_inner602": 2,
+      "totalDebt_inner603": 180000,
+      "overdueMaxDays_inner604": 0
+    },
+    "antifraud_inner643": {
+      "riskScore_inner611": 12,
+      "riskLevel_inner612": "LOW"
+    },
+    "internal_inner644": {
+      "clientSince_inner621": "2018-06-01",
+      "avgMonthlyBalance_inner622": 45000,
+      "salaryClient_inner623": true
+    },
+    "product_inner645": {
+      "amount_inner631": 500000,
+      "termMonths_inner632": 36,
+      "type_inner633": "CONSUMER_LOAN"
+    }
+  }
+}
+
+
+
+
+{
+  "requestId": "req-fs-2026-10-05-001",
+  "status": "OK",
+  "featureVectorId": "fv-2026-10-05-555",
+  "features": {
+    "age": 41,
+    "incomeMonthly": 120000,
+    "dti": 0.35,
+    "pti": 0.10,
+    "bkiScore": 720,
+    "activeLoans": 2,
+    "overdueMaxDays": 0,
+    "inquiriesLast12m": 3,
+    "clientTenureMonths": 88,
+    "avgMonthlyBalance": 45000,
+    "salaryClient": true,
+    "antifraudRiskScore": 12,
+    "productAmount": 500000,
+    "productTermMonths": 36
+  },
+  "computedAt": "2026-10-05T10:16:00.123Z"
+}

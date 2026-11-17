@@ -6,62 +6,70 @@ import (
 	"log"
 )
 
-// === Скрипт: JSON → XML для БКИ ===
 func Process_93d9fa01(msg Message, sender MessageSender) error {
 	log.Printf("🔄 JSON → XML (BKI): обработка %s", msg.ID)
 
-	payload, ok := msg.Data["payload"].(map[string]interface{})
-	if !ok {
-		payload = msg.Data
-	}
+	requestId := strVal(msg.Data["requestId_inner431"])
+	applicationId := strVal(msg.Data["applicationId_inner432"])
 
-	applicationId := ""
-	if env, ok := msg.Data["envelope"].(map[string]interface{}); ok {
-		if v, ok := env["applicationId"].(string); ok {
-			applicationId = v
+	client, _ := msg.Data["client_inner433"].(map[string]interface{})
+	firstName := strVal(client["firstName_inner401"])
+	lastName := strVal(client["lastName_inner402"])
+	middleName := strVal(client["middleName_inner403"])
+	birthDate := strVal(client["birthDate_inner404"])
+	passportSeries := strVal(client["passportSeries_inner405"])
+	passportNumber := strVal(client["passportNumber_inner406"])
+	inn := strVal(client["inn_inner407"])
+	snils := strVal(client["snils_inner408"])
+
+	requestedFrom := ""
+	if arr, ok := msg.Data["requestedFrom_inner434"].([]interface{}); ok {
+		for _, v := range arr {
+			requestedFrom += fmt.Sprintf("<requestedFrom>%s</requestedFrom>", escapeXml(strVal(v)))
 		}
 	}
 
-	client, _ := payload["client"].(map[string]interface{})
-	passport, _ := client["passport"].(map[string]interface{})
+	requestPurpose := strVal(msg.Data["requestPurpose_inner435"])
 
-	bkiDocRef := ""
-	if consents, ok := payload["consents"].([]interface{}); ok {
-		for _, c := range consents {
-			cm, _ := c.(map[string]interface{})
-			if cm["type"] == "BKI_REQUEST" {
-				bkiDocRef, _ = cm["documentRef"].(string)
-			}
-		}
-	}
+	consent, _ := msg.Data["consent_inner436"].(map[string]interface{})
+	consentGranted := strVal(consent["granted_inner421"])
+	consentDocRef := strVal(consent["documentRef_inner422"])
 
-	xmlBody := fmt.Sprintf(`<BkiReportRequest>
+	// ⚠️ Без namespace — XSD тоже должен быть без targetNamespace
+	xmlBody := fmt.Sprintf(`<ReportRequest>
+  <requestId>%s</requestId>
   <applicationId>%s</applicationId>
   <client>
     <firstName>%s</firstName>
     <lastName>%s</lastName>
+    <middleName>%s</middleName>
     <birthDate>%s</birthDate>
     <passportSeries>%s</passportSeries>
     <passportNumber>%s</passportNumber>
     <inn>%s</inn>
     <snils>%s</snils>
   </client>
-  <requestedFrom>NBKI</requestedFrom>
-  <requestedFrom>OKB</requestedFrom>
+  %s
+  <requestPurpose>%s</requestPurpose>
   <consent>
-    <granted>true</granted>
+    <granted>%s</granted>
     <documentRef>%s</documentRef>
   </consent>
-</BkiReportRequest>`,
+</ReportRequest>`,
+		escapeXml(requestId),
 		escapeXml(applicationId),
-		escapeXml(strVal(client["firstName"])),
-		escapeXml(strVal(client["lastName"])),
-		escapeXml(strVal(client["birthDate"])),
-		escapeXml(strVal(passport["series"])),
-		escapeXml(strVal(passport["number"])),
-		escapeXml(strVal(client["inn"])),
-		escapeXml(strVal(client["snils"])),
-		escapeXml(bkiDocRef),
+		escapeXml(firstName),
+		escapeXml(lastName),
+		escapeXml(middleName),
+		escapeXml(birthDate),
+		escapeXml(passportSeries),
+		escapeXml(passportNumber),
+		escapeXml(inn),
+		escapeXml(snils),
+		requestedFrom,
+		escapeXml(requestPurpose),
+		escapeXml(consentGranted),
+		escapeXml(consentDocRef),
 	)
 
 	outMsg := Message{
@@ -98,6 +106,9 @@ func strVal(v interface{}) string {
 			return fmt.Sprintf("%d", int64(n))
 		}
 		return fmt.Sprintf("%v", n)
+	}
+	if b, ok := v.(bool); ok {
+		return fmt.Sprintf("%v", b)
 	}
 	b, _ := json.Marshal(v)
 	return string(b)

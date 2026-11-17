@@ -1,0 +1,22 @@
+{
+  "requestId": "req-fs-2026-10-05-001",
+  "status": "OK",
+  "featureVectorId": "fv-2026-10-05-555",
+  "features": {
+    "age": 41,
+    "incomeMonthly": 120000,
+    "dti": 0.35,
+    "pti": 0.10,
+    "bkiScore": 720,
+    "activeLoans": 2,
+    "overdueMaxDays": 0,
+    "inquiriesLast12m": 3,
+    "clientTenureMonths": 88,
+    "avgMonthlyBalance": 45000,
+    "salaryClient": true,
+    "antifraudRiskScore": 12,
+    "productAmount": 500000,
+    "productTermMonths": 36
+  },
+  "computedAt": "2026-10-05T10:16:00.123Z"
+}

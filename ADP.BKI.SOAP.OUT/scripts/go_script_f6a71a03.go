@@ -10,17 +10,56 @@ import (
 	"strings"
 )
 
-// === Скрипт: XML → JSON для БКИ ===
 func Process_f6a71a03(msg Message, sender MessageSender) error {
 	log.Printf("🔄 XML → JSON (BKI): обработка %s", msg.ID)
 
-	result, err := parseSoapBody(msg.Body, "BkiReportResponse")
+	result, err := parseSoapBody(msg.Body, "ReportResponse")
 	if err != nil {
 		log.Printf("❌ Ошибка парсинга XML: %v", err)
 		return err
 	}
 
-	jsonBytes, err := json.Marshal(result)
+	// ⚠️ Разворачиваем вложенный <ReportResponse> (node-soap оборачивает)
+	if inner, ok := result["ReportResponse"].(map[string]interface{}); ok {
+		log.Printf("🔍 Разворачиваю вложенный ReportResponse")
+		result = inner
+	}
+
+	finalJSON := map[string]interface{}{
+		"requestId_inner461": strValF6(result["requestId"]),
+		"status_inner462":    strValF6(result["status"]),
+	}
+
+	// sources
+	if sources, ok := result["sources"].(map[string]interface{}); ok {
+		if source, ok := sources["source"].(map[string]interface{}); ok {
+			finalJSON["sources_inner463"] = []interface{}{buildSource(source)}
+		} else if sourceArr, ok := sources["source"].([]interface{}); ok {
+			finalSources := []interface{}{}
+			for _, s := range sourceArr {
+				sm, _ := s.(map[string]interface{})
+				finalSources = append(finalSources, buildSource(sm))
+			}
+			finalJSON["sources_inner463"] = finalSources
+		}
+	} else if sourcesArr, ok := result["sources"].([]interface{}); ok {
+		finalSources := []interface{}{}
+		for _, s := range sourcesArr {
+			sm, _ := s.(map[string]interface{})
+			finalSources = append(finalSources, buildSource(sm))
+		}
+		finalJSON["sources_inner463"] = finalSources
+	}
+
+	if summary, ok := result["summary"].(map[string]interface{}); ok {
+		finalJSON["summary_inner464"] = map[string]interface{}{
+			"worstStatus_inner451":           strValF6(summary["worstStatus"]),
+			"hasBankruptcy_inner452":         summary["hasBankruptcy"],
+			"hasCurrentDelinquency_inner453": summary["hasCurrentDelinquency"],
+		}
+	}
+
+	jsonBytes, err := json.Marshal(finalJSON)
 	if err != nil {
 		log.Printf("❌ Ошибка сериализации JSON: %v", err)
 		return err
@@ -29,7 +68,7 @@ func Process_f6a71a03(msg Message, sender MessageSender) error {
 	outMsg := Message{
 		ID:            msg.ID,
 		Body:          jsonBytes,
-		Data:          result,
+		Data:          finalJSON,
 		IsJSON:        true,
 		Headers:       msg.Headers,
 		AggregateName: msg.AggregateName,
@@ -49,7 +88,19 @@ func Process_f6a71a03(msg Message, sender MessageSender) error {
 	return nil
 }
 
-// parseSoapBody — вытаскивает указанный элемент из <soap:Body> и превращает в map
+func buildSource(sm map[string]interface{}) map[string]interface{} {
+	if sm == nil {
+		sm = map[string]interface{}{}
+	}
+	return map[string]interface{}{
+		"bureau_inner441":         strValF6(sm["bureau"]),
+		"score_inner442":          toNumber(sm["score"]),
+		"activeLoans_inner443":    toNumber(sm["activeLoans"]),
+		"totalDebt_inner444":      toNumber(sm["totalDebt"]),
+		"overdueMaxDays_inner445": toNumber(sm["overdueMaxDays"]),
+	}
+}
+
 func parseSoapBody(data []byte, targetElement string) (map[string]interface{}, error) {
 	decoder := xml.NewDecoder(strings.NewReader(string(data)))
 	inBody := false
@@ -82,7 +133,6 @@ func parseSoapBody(data []byte, targetElement string) (map[string]interface{}, e
 	return nil, fmt.Errorf("элемент <%s> не найден", targetElement)
 }
 
-// decodeElement — рекурсивно возвращает значение (string/float64/bool/map/[]interface{})
 func decodeElement(decoder *xml.Decoder, start *xml.StartElement) (interface{}, error) {
 	var text strings.Builder
 	children := make(map[string]interface{})
@@ -107,7 +157,6 @@ func decodeElement(decoder *xml.Decoder, start *xml.StartElement) (interface{}, 
 		case xml.EndElement:
 			if t.Name.Local == start.Name.Local {
 				if hasChildren {
-					// «Поднимаем» единственного ребёнка-массив для известных полей
 					if shouldFlatten(start.Name.Local, children) {
 						for _, v := range children {
 							if arr, ok := v.([]interface{}); ok {
@@ -121,32 +170,23 @@ func decodeElement(decoder *xml.Decoder, start *xml.StartElement) (interface{}, 
 				if s == "" {
 					return nil, nil
 				}
-				// 1. Сначала число (приоритетнее, чтобы "0" → 0, а не false)
 				if n, err := strconv.ParseFloat(s, 64); err == nil {
 					return n, nil
 				}
-				// 2. Потом bool ("true"/"false")
 				if b, err := strconv.ParseBool(s); err == nil {
 					return b, nil
 				}
-				// 3. Иначе — строка
 				return s, nil
 			}
 		}
 	}
 }
 
-// shouldFlatten — «поднимать» ли единственного ребёнка-массив
 func shouldFlatten(parentName string, children map[string]interface{}) bool {
 	flattenParents := map[string]bool{
-		"sources":     true,
-		"documents":   true,
-		"consents":    true,
-		"items":       true,
-		"checks":      true,
-		"flags":       true,
-		"reasonCodes": true,
-		"proceedings": true,
+		"sources": true, "documents": true, "consents": true,
+		"items": true, "checks": true, "flags": true,
+		"reasonCodes": true, "proceedings": true,
 	}
 	if !flattenParents[parentName] {
 		return false
@@ -162,7 +202,6 @@ func shouldFlatten(parentName string, children map[string]interface{}) bool {
 	return false
 }
 
-// addToMap — добавляет значение, повторяющиеся ключи → массив
 func addToMap(m map[string]interface{}, key string, value interface{}) {
 	if existing, ok := m[key]; ok {
 		if arr, ok := existing.([]interface{}); ok {
@@ -173,4 +212,23 @@ func addToMap(m map[string]interface{}, key string, value interface{}) {
 	} else {
 		m[key] = value
 	}
+}
+
+func toNumber(v interface{}) interface{} {
+	if s, ok := v.(string); ok {
+		if n, err := strconv.ParseFloat(s, 64); err == nil {
+			return n
+		}
+	}
+	return v
+}
+
+func strValF6(v interface{}) string {
+	if v == nil {
+		return ""
+	}
+	if s, ok := v.(string); ok {
+		return s
+	}
+	return fmt.Sprintf("%v", v)
 }
