@@ -1,8 +1,8 @@
 {
-  "pipelineId": "3d70bc3f-e680-427e-9411-2ae967e98a99",
+  "pipelineId": "641c0d21-39c8-4f40-bc60-a1ca2e10a09d",
   "name": "httpOut",
-  "createdAt": 1793845168744,
-  "modifiedAt": 1793845168744,
+  "createdAt": 1794979255794,
+  "modifiedAt": 1794979255794,
   "isPattern": false,
   "blocks": [
     {
@@ -17,7 +17,7 @@
         "method": "POST",
         "retryCount": 3,
         "contentType": "application/json",
-        "url": "http://localhost:8081/api",
+        "url": "http://localhost:20002/api",
         "timeout": 30000
       },
       "exposedConfig": {},
@@ -55,7 +55,7 @@
     {
       "id": "ed995bfc-da05-41ba-a848-1d5df5075a45",
       "type": "MQ_OUTPUT",
-      "title": "📨 qyqy12334243213211314432433543214е32е33",
+      "title": "📨 adp.kys.rs",
       "x": 333.0000000000002,
       "y": 276.0,
       "config": {
@@ -75,7 +75,7 @@
         "expiration": 0,
         "correlationId": "",
         "retryInterval": 10000,
-        "targetQueue": "qyqy12334243213211314432433543214е32е33",
+        "targetQueue": "adp.kys.rs",
         "connectionName": "localhost(1414)",
         "persistent": true
       },
@@ -106,13 +106,13 @@
     {
       "id": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "type": "ELASTICSEARCH",
-      "title": "Elasticsearch",
+      "title": "🔍 ES: pipeline-data2",
       "x": 1012.6666666666667,
       "y": 134.0,
       "config": {
         "includeMetadata": true,
         "password": "",
-        "indexName": "pipeline-data",
+        "indexName": "pipeline-data2",
         "host": "http://localhost:9200",
         "documentIdField": "",
         "includeHeaders": true,
@@ -182,49 +182,49 @@
   ],
   "connections": [
     {
-      "id": "84d65d9c-4abb-4a36-bdc7-1ad9dfe7bc34",
+      "id": "5402e479-7350-4d0f-b594-47868fb8525d",
       "source": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
       "target": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "sourceTerminal": "RESPONSE",
       "targetTerminal": "IN"
     },
     {
-      "id": "a4d5a4f0-9082-43f5-b9f6-7232eba9fce0",
+      "id": "8426a163-fb1a-4458-9776-00deab5cd435",
       "source": "06a899d0-9288-4e91-baf7-91d9bd96d35c",
       "target": "ed995bfc-da05-41ba-a848-1d5df5075a45",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "de9c2d7d-aadf-433d-b9d2-1c5d2cb23740",
+      "id": "8da4cc50-6616-4da4-94fc-9da7abe6133d",
       "source": "5d98358a-0e88-4b96-b0d4-be509a334064",
       "target": "758cb171-437b-4a71-a766-5f73ab1d39bb",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "3a1d6605-0613-4da1-a2eb-838e9d497e98",
+      "id": "ec411c00-246c-41f1-a378-18c0c11936de",
       "source": "f72bf4ee-fcb3-4809-b1e7-82bb01130496",
       "target": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "4fa45e72-94ed-43c6-bc7e-eb6b8a22823f",
+      "id": "991e368c-eb17-4421-819b-99d1b89c4bcf",
       "source": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2",
       "target": "69492843-6c4c-4807-9719-3d7e39af89b5",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "a664646b-103c-4de4-9a27-f7afbf32d35f",
+      "id": "c6ac3e27-2fc3-4b00-8d12-605c295c327d",
       "source": "03f1b0b3-d828-4978-b691-aee14b3a423f",
       "target": "556002d6-5e4b-4441-b658-92b275156847",
       "sourceTerminal": "OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "103ce556-d0b4-4108-93c1-e1a56e93e0b0",
+      "id": "76fb8bc0-3ba6-44c3-9241-99f2cd4e9f65",
       "source": "556002d6-5e4b-4441-b658-92b275156847",
       "target": "b33dea77-35ad-4301-9c4d-8b9f0eb7ada0",
       "sourceTerminal": "OUT",

@@ -1,26 +1,16 @@
 {
-  "pipelineId": "92e67371-5629-4dd6-9cc3-912a5c2a1206",
+  "pipelineId": "86be0023-b789-4b42-9546-d2c5f3448eba",
   "name": "Новый пайплайн",
-  "createdAt": 1790244381470,
-  "modifiedAt": 1790244381470,
+  "createdAt": 1793881746429,
+  "modifiedAt": 1793881746429,
   "isPattern": false,
   "blocks": [
     {
-      "id": "644a5435-c583-4643-b511-de134351ea07",
-      "type": "SUPER_FLOW",
-      "title": "pipeline.json",
-      "x": 350.0,
-      "y": 282.0,
-      "config": {},
-      "referenceProjectName": "dsadsa",
-      "referenceFileName": "pipeline.json"
-    },
-    {
-      "id": "1389fd6f-32e0-4d29-a719-a22163d2c3f6",
+      "id": "db747582-63b9-4a12-8740-a47ec5416acf",
       "type": "MQ_INPUT",
-      "title": "📥 12345",
-      "x": 99.0,
-      "y": 288.0,
+      "title": "📥 13213",
+      "x": 267.0,
+      "y": 157.0,
       "config": {
         "browseMode": false,
         "messageFormat": "MQSTR",
@@ -34,20 +24,117 @@
         "failIfQuiescing": true,
         "ccsid": 1208,
         "transactionType": "local",
-        "queueName": "12345",
+        "queueName": "13213",
         "queueManager": "QMGR1",
         "rollbackOnError": true,
         "transportType": "MQCNO_CLIENT",
         "retryInterval": 10000,
         "connectionName": "localhost(1414)"
-      }
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "0315d0a5-0625-43ad-8082-410185e02967",
+      "type": "MQ_OUTPUT",
+      "title": "📨 уаыуцйу432",
+      "x": 756.0,
+      "y": 102.0,
+      "config": {
+        "messageFormat": "MQSTR",
+        "replyToQueueManager": "",
+        "retryCount": 3,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "messageId": "",
+        "replyToQueue": "",
+        "queueNameField": "",
+        "priority": 4,
+        "discardOnError": false,
+        "transactionType": "local",
+        "queueManager": "QMGR1",
+        "transportType": "MQCNO_CLIENT",
+        "expiration": 0,
+        "correlationId": "",
+        "retryInterval": 10000,
+        "targetQueue": "уаыуцйу432",
+        "connectionName": "localhost(1414)",
+        "persistent": true
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "49c55aca-ca2a-45cf-af70-7d9b074dc2fb",
+      "type": "MQ_OUTPUT",
+      "title": "📨 пук234123",
+      "x": 773.0,
+      "y": 284.0,
+      "config": {
+        "messageFormat": "MQSTR",
+        "replyToQueueManager": "",
+        "retryCount": 3,
+        "channel": "SYSTEM.DEF.SVRCONN",
+        "errorQueue": "ERROR.QUEUE",
+        "messageId": "",
+        "replyToQueue": "",
+        "queueNameField": "",
+        "priority": 4,
+        "discardOnError": false,
+        "transactionType": "local",
+        "queueManager": "QMGR1",
+        "transportType": "MQCNO_CLIENT",
+        "expiration": 0,
+        "correlationId": "",
+        "retryInterval": 10000,
+        "targetQueue": "пук234123",
+        "connectionName": "localhost(1414)",
+        "persistent": true
+      },
+      "exposedConfig": {},
+      "exposed": []
+    },
+    {
+      "id": "ac17a23d-a349-4aba-9269-915028add820",
+      "type": "FILTER",
+      "title": "🚦 Filter: 1\u003d\u003d1",
+      "x": 522.0,
+      "y": 171.0,
+      "config": {
+        "passThrough": true,
+        "condition": "1\u003d\u003d1",
+        "caseSensitive": true,
+        "negate": false,
+        "description": "",
+        "conditionType": "JEXL",
+        "conditionField": "body"
+      },
+      "exposedConfig": {},
+      "exposed": []
     }
   ],
   "connections": [
     {
-      "id": "bf2386e0-24c8-46dc-b166-2ff370abc2e7",
-      "source": "1389fd6f-32e0-4d29-a719-a22163d2c3f6",
-      "target": "644a5435-c583-4643-b511-de134351ea07"
+      "id": "5b51ad54-c1f2-4b93-8a77-a62c204f05d2",
+      "source": "db747582-63b9-4a12-8740-a47ec5416acf",
+      "target": "ac17a23d-a349-4aba-9269-915028add820",
+      "sourceTerminal": "OUT",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "65bea65a-2b62-46be-99ed-4f8503cc38dc",
+      "source": "ac17a23d-a349-4aba-9269-915028add820",
+      "target": "0315d0a5-0625-43ad-8082-410185e02967",
+      "sourceTerminal": "PASS",
+      "targetTerminal": "IN"
+    },
+    {
+      "id": "59a2bb7c-be0a-4351-835c-e58380fcda2e",
+      "source": "ac17a23d-a349-4aba-9269-915028add820",
+      "target": "49c55aca-ca2a-45cf-af70-7d9b074dc2fb",
+      "sourceTerminal": "FAIL",
+      "targetTerminal": "IN"
     }
-  ]
+  ],
+  "exposedConfig": {}
 }

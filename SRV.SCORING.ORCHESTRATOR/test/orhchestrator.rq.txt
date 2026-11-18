@@ -1,0 +1,59 @@
+{
+  "envelope": {
+    "messageId_inner2001": "msg-001",
+    "correlationId_inner2002": "corr-2026-10-05-000123",
+    "applicationId_inner2003": "app-2026-10-05-987654",
+    "messageType_inner2004": "ApplicationSubmitted",
+    "sourceSystem_inner2005": "CRM",
+    "timestamp_inner2006": "2026-10-05T10:15:30Z"
+  },
+  "payload_inner2007": {
+    "crmRequestId_inner171": "CRM-REQ-2026-000123",
+    "channel_inner173": "OFFICE",
+    "branchCode_inner174": "BR-7701",
+    "employeeId_inner175": "EMP-45621",
+    "product_inner176": {
+      "type_inner101": "CONSUMER_LOAN",
+      "amount_inner102": 500000,
+      "currency_inner103": "RUB",
+      "termMonths_inner104": 36
+    },
+    "client_inner177": {
+      "clientId_inner121": "CLI-998877",
+      "firstName_inner122": "Иван",
+      "lastName_inner123": "Петров",
+      "middleName_inner124": "Сергеевич",
+      "birthDate_inner125": "1985-03-12",
+      "inn_inner126": "770912345678",
+      "snils_inner127": "123-456-789 00",
+      "passport_inner128": {
+        "series_inner141": "4510",
+        "number_inner142": "123456"
+      },
+      "phone_inner129": "+79001234567",
+      "employment_inner130": {
+        "status_inner111": "EMPLOYED",
+        "employerName_inner112": "ООО Ромашка",
+        "monthlyIncome_inner113": 120000
+      }
+    },
+    "consents_inner178": [
+      {
+        "type_inner151": "PDN_PROCESSING",
+        "granted_inner152": true,
+        "documentRef_inner153": "S3://consents/pdn.pdf"
+      },
+      {
+        "type_inner151": "BKI_REQUEST",
+        "granted_inner152": true,
+        "documentRef_inner153": "S3://consents/bki.pdf"
+      }
+    ],
+    "documents_inner179": [
+      {
+        "type_inner161": "PASSPORT_SCAN",
+        "url_inner162": "S3://docs/passport.pdf"
+      }
+    ]
+  }
+}

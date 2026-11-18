@@ -1,8 +1,8 @@
 {
-  "pipelineId": "72a09e4f-6180-4701-8f9f-219b371ed009",
+  "pipelineId": "b1dea513-9977-4f1a-951e-94dcb625b0b1",
   "name": "Adp.BKI.SOAP.out",
-  "createdAt": 1793840173826,
-  "modifiedAt": 1793840173826,
+  "createdAt": 1793881047206,
+  "modifiedAt": 1793881047206,
   "isPattern": false,
   "blocks": [
     {
@@ -12,7 +12,7 @@
       "x": 324.3333333333333,
       "y": 61.33333333333337,
       "config": {
-        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.BKI.SOAP.OUT\\scripts\\go_script_93d9fa01.go"
+        "scriptFile": "go_script_93d9fa01.go"
       },
       "exposedConfig": {},
       "exposed": []
@@ -24,7 +24,7 @@
       "x": 349.66666666666674,
       "y": 367.33333333333337,
       "config": {
-        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\ADP.BKI.SOAP.OUT\\scripts\\go_script_f6a71a03.go"
+        "scriptFile": "go_script_f6a71a03.go"
       },
       "exposedConfig": {},
       "exposed": []
@@ -44,28 +44,28 @@
   ],
   "connections": [
     {
-      "id": "ec893476-38da-41e2-ab01-7dfb6244d912",
+      "id": "11a5bb63-a0f1-42db-a9bf-9f23d56774e6",
       "source": "93d9fa01-8d00-4df7-b3b7-8a8801b8ef3a",
       "target": "83fa1ff8-849f-4342-8801-8893a2db8b11",
       "sourceTerminal": "OUT",
       "targetTerminal": "03f1b0b3-d828-4978-b691-aee14b3a423f:IN"
     },
     {
-      "id": "f6a21e0d-fce8-4045-936c-304e07ebbeee",
+      "id": "b3c8aa69-4703-4bed-b959-eaac772ea77b",
       "source": "83fa1ff8-849f-4342-8801-8893a2db8b11",
       "target": "93d9fa01-8d00-4df7-b3b7-8a8801b8ef3a",
       "sourceTerminal": "5d98358a-0e88-4b96-b0d4-be509a334064:OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "5d13d3c0-7733-48fb-a48f-19e3a8158fb1",
+      "id": "48ec4ab4-8a6b-480a-b8fc-af973aa419a0",
       "source": "83fa1ff8-849f-4342-8801-8893a2db8b11",
       "target": "f6a71a03-5351-4e97-8bd3-4b5b20106b35",
       "sourceTerminal": "b326e7ae-e3d4-49c5-a3fa-ad5c68e052d2:OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "7053b6a2-d330-4064-97c9-bd1c319b2125",
+      "id": "94e0fecf-4bb1-416a-a29b-9927f6f15eb4",
       "source": "f6a71a03-5351-4e97-8bd3-4b5b20106b35",
       "target": "83fa1ff8-849f-4342-8801-8893a2db8b11",
       "sourceTerminal": "OUT",
