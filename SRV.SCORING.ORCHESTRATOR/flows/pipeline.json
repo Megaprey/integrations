@@ -1,8 +1,8 @@
 {
-  "pipelineId": "7b2f7ef0-aa7d-4677-b314-0fa630569860",
+  "pipelineId": "00ee7f76-6dbc-4b4c-8281-763b2b4344b9",
   "name": "Основной",
-  "createdAt": 1794979246388,
-  "modifiedAt": 1794979246388,
+  "createdAt": 1795184961425,
+  "modifiedAt": 1795184961425,
   "isPattern": false,
   "blocks": [
     {
@@ -24,7 +24,7 @@
       "x": 394.0,
       "y": 38.0,
       "config": {
-        "scriptFile": "go_script_236b7d3a.go"
+        "scriptFile": "C:\\Users\\MSi\\Documents\\KonstruktorScenariev\\SRV.SCORING.ORCHESTRATOR\\scripts\\go_script_236b7d3a.go"
       },
       "exposedConfig": {},
       "exposed": []
@@ -44,28 +44,28 @@
   ],
   "connections": [
     {
-      "id": "be1a846a-9ef4-43ab-8643-6084250af0b6",
+      "id": "c7e3506d-1a2a-4e70-97c5-65d3d857472a",
       "source": "236b7d3a-79cc-4075-a404-e14a9583d362",
       "target": "e38945cc-3956-4815-b70e-7241fc184cc2",
       "sourceTerminal": "OUT",
       "targetTerminal": "d74da679-059e-47c1-93fb-67edd6d6f048:IN"
     },
     {
-      "id": "f372df83-d975-47cf-ad90-b187832e6b6f",
+      "id": "0168cfd7-d7d3-4e8f-b322-098818f3f036",
       "source": "e38945cc-3956-4815-b70e-7241fc184cc2",
       "target": "236b7d3a-79cc-4075-a404-e14a9583d362",
       "sourceTerminal": "dc264f58-2994-4c28-899e-037331b330bb:OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "b1d2316e-d7fe-41b8-83b6-e0453dfbce64",
+      "id": "bfa6eaf5-4296-4b9c-97d8-f52de2bbf996",
       "source": "e38945cc-3956-4815-b70e-7241fc184cc2",
       "target": "5ebb622a-978c-4c9e-a025-d732b11383bf",
       "sourceTerminal": "b7714784-0378-4714-a494-7bba1cd334fd:OUT",
       "targetTerminal": "IN"
     },
     {
-      "id": "6890f7cc-be01-4304-90d2-6ed3c1d5877c",
+      "id": "9679e61d-7096-48b0-b2cb-1c9f9f5c44f1",
       "source": "5ebb622a-978c-4c9e-a025-d732b11383bf",
       "target": "e38945cc-3956-4815-b70e-7241fc184cc2",
       "sourceTerminal": "OUT",

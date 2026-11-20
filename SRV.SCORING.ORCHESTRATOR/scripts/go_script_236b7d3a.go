@@ -248,12 +248,7 @@ type DecAggregatedOut struct {
     Scoring   map[string]interface{} `mapstructure:"scoring_inner1014"   json:"scoring_inner1014"`
     Rules     map[string]interface{} `mapstructure:"rules_inner1015"     json:"rules_inner1015"`
 }
-type DecisionRequestOut struct {
-    RequestID         string              `mapstructure:"requestId_inner1021"         json:"requestId_inner1021"`
-    ApplicationID     string              `mapstructure:"applicationId_inner1022"     json:"applicationId_inner1022"`
-    Product           DecProductOut       `mapstructure:"product_inner1023"           json:"product_inner1023"`
-    AggregatedResults DecAggregatedOut    `mapstructure:"aggregatedResults_inner1024" json:"aggregatedResults_inner1024"`
-}
+
 
 // ---------- 2.8 Pricing ----------
 type PricingClientOut struct {
@@ -301,7 +296,7 @@ func Process_236b7d3a(msg Message, output MessageSender) Message {
         }
     }
 
-    // --- 2. Парсинг входящего сообщения через mapstructure (inner → inner) ---
+    // --- 2. Парсинг входящего сообщения ---
     var raw map[string]interface{}
     if err := json.Unmarshal(msg.Body, &raw); err != nil {
         log.Printf("❌ Ошибка парсинга JSON: %v", err)
@@ -323,7 +318,7 @@ func Process_236b7d3a(msg Message, output MessageSender) Message {
     app := incoming.Payload
     env := incoming.Envelope
 
-    // --- 4. Формируем и отправляем все 8 исходящих ---
+    // --- 4. Формируем и отправляем 7 исходящих запросов (без Decision Engine!) ---
 
     // 2.1 KYC
     kycReq := KycVerifyRequestOut{
@@ -483,47 +478,7 @@ func Process_236b7d3a(msg Message, output MessageSender) Message {
     }
     sendAsync("CRM", "RULES", "ADP.RULES.HTTP.OUT", env, rulesReq, output)
 
-    // 2.7 Decision Engine
-    decReq := DecisionRequestOut{
-        RequestID:     "req-dec-" + env.ApplicationID,
-        ApplicationID: env.ApplicationID,
-        Product: DecProductOut{
-            Type:       app.Product.Type,
-            Amount:     app.Product.Amount,
-            Currency:   app.Product.Currency,
-            TermMonths: app.Product.TermMonths,
-        },
-        AggregatedResults: DecAggregatedOut{
-            Kyc: map[string]interface{}{
-                "status": "VERIFIED",
-            },
-            Bki: map[string]interface{}{
-                "worstStatus":           "GOOD",
-                "hasCurrentDelinquency": false,
-                "score":                 720,
-            },
-            Antifraud: map[string]interface{}{
-                "riskLevel": "LOW",
-                "riskScore": 12,
-            },
-            Scoring: map[string]interface{}{
-                "score":        685,
-                "pd":           0.042,
-                "riskGrade":    "B",
-                "modelVersion": "3.2.1",
-            },
-            Rules: map[string]interface{}{
-                "policyDecision": "PASS",
-                "limits": map[string]interface{}{
-                    "maxAmount":     750000,
-                    "maxTermMonths": 60,
-                },
-            },
-        },
-    }
-    sendAsync("CRM", "DECISION_ENGINE", "ADP.DECISION.MQ.OUT", env, decReq, output)
-
-    // 2.8 Pricing
+    // 2.7 Pricing
     priceReq := PricingRequestOut{
         RequestID:     "req-price-" + env.ApplicationID,
         ApplicationID: env.ApplicationID,
@@ -545,7 +500,7 @@ func Process_236b7d3a(msg Message, output MessageSender) Message {
     }
     sendAsync("CRM", "PRICING", "ADP.PRICING.HTTP.OUT", env, priceReq, output)
 
-    log.Printf("✅ Все 8 исходящих сообщений отправлены асинхронно")
+    log.Printf("✅ Все 7 исходящих сообщений отправлены асинхронно (Decision Engine пропущен)")
     return msg
 }
 
